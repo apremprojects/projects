@@ -1,0 +1,3 @@
+C:/Users/arjun/source/projects/usaco/build/CMakeFiles/MooTimes.dir
+C:/Users/arjun/source/projects/usaco/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/arjun/source/projects/usaco/build/CMakeFiles/ZERO_CHECK.dir

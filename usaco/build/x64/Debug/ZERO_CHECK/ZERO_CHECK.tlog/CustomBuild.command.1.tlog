@@ -1,0 +1,10 @@
+^C:\USERS\ARJUN\SOURCE\PROJECTS\USACO\BUILD\CMAKEFILES\3EDED85F5B8E1DCC8AD6E23F4325F43C\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/arjun/source/projects/usaco -BC:/Users/arjun/source/projects/usaco/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/arjun/source/projects/usaco/build/usaco_practice.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
