@@ -1,8 +1,0 @@
-﻿  Checking Build System
-  CMake is re-running because C:/Users/arjun/source/projects/usaco/build/CMakeFiles/generate.stamp is out-of-date.
-    the file 'C:/Users/arjun/source/projects/usaco/CMakeLists.txt'
-    is newer than 'C:/Users/arjun/source/projects/usaco/build/CMakeFiles/generate.stamp.depend'
-    result='-1'
-  -- Configuring done
-  -- Generating done
-  -- Build files have been written to: C:/Users/arjun/source/projects/usaco/build
