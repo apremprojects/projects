@@ -1,4 +1,6 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 project("usaco_practice")
-
 add_executable("MooTimes" "MooTimes/main.cpp")
+add_executable("SecretMission" "Secret Mission/main.cpp")
+add_executable("PictureGame" "Picture Game/main.cpp")
+add_executable("ColorCoding" "Color Coding/main.cpp")
