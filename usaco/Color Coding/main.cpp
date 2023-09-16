@@ -42,15 +42,6 @@ int main() {
     for (int d = 0; d < M; d++) {
         set<char> bc = get_unique(black_cows, d);
         set<char> brc = get_unique(brown_cows, d);
-        /*cout << "d = " << d << " -> ";
-        for (const auto i : bc) {
-            cout << i << " ";
-        }
-        cout << ", ";
-        for (const auto i : brc) {
-            cout << i << " ";
-        }
-        cout << "\n";*/
         if (increment(bc, brc)) {
             c++;
         }
