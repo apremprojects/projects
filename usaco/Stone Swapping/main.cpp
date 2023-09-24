@@ -7,92 +7,106 @@
 
 using namespace std;
 
-int char_to_int(const char c) {
-    return c - 'a';
-}
-
-void unique_letters(const string &s, vector<int> &l) {
-    for (const char c : s) {
-        l[char_to_int(c)] += 1;
-    }
-}
-
-vector<int> get_letters(const string& s) {
-    vector<int> l(26, 0);
-    for (const char c : s) {
-        l[char_to_int(c)]++;
-    }
-    return l;
-}
-
-vector<vector<int>> transpose(const vector<vector<int>> data) {
-    vector<vector<int> > result(data[0].size(),
-        vector<int>(data.size()));
-    for (vector<int>::size_type i = 0; i < data[0].size(); i++)
-        for (vector<int>::size_type j = 0; j < data.size(); j++) {
-            result[i][j] = data[j][i];
+vector <string> ninety_clockwise(vector<string> start) {
+    int size = start.size();
+    int layer_count = size / 2;
+    for (int layer = 0; layer < layer_count; layer++) {
+        int first = layer;
+        int last = size - first - 1;
+        for (int element = first; element < last; element++) {
+            int offset = element - first;
+            int top = start[first][element];
+            int right_side = start[element][last];
+            int bottom = start[last][last - offset];
+            int left_side = start[last - offset][first];
+            start[first][element] = left_side;
+            start[element][last] = top;
+            start[last][last - offset] = right_side;
+            start[last - offset][first] = bottom;
         }
+    }
+    return start;
+}
+
+vector<string> one_hundred_and_eighty_degrees_clockwise(vector<string> start) {
+    return ninety_clockwise(ninety_clockwise(start));
+}
+
+vector<string> two_hundred_and_seventy_degrees_clockwise(vector<string> start) {
+    return ninety_clockwise(ninety_clockwise(ninety_clockwise(start)));
+}
+
+vector<string> horz_reflect(vector<string> start) {
+    vector<string> result(start.size(), string(start.size(), ' '));
+    for (int layer = 0; layer < start.size(); layer++) {
+        for (int i = 0; i < start.size(); i++) {
+            result[layer][i] = start[layer][start.size() - i - 1];
+        }
+    }
     return result;
 }
 
-vector<int> operator+(const vector<int> &a, const vector<int> &b) {
-    vector<int> result(26, 0);
-    for (int i = 0; i < 26; i++) {
-        result[i] = a[i] + b[i];
+void disp(const vector<string>& d) {
+    for (auto s: d) {
+        cout << s << "\n";
     }
-    return result;
-}
-
-char int_to_char(const int i) {
-    return 'a' + i;
-}
-
-void disp(const vector<int> &v) {
-    for (int i = 0; i < 26; i++) {
-        if (v[i] != 0) {
-            cout << int_to_char(i) << "x" << v[i] << " ";
-        }
-    }
-    cout << "\n";
-}
-
-int calculate_digit(const int d, const vector<vector<int>>& vletters) {
-    int c = 0;
-    for (int r = 0; r < vletters.size(); r += 2) {
-        c += std::max(vletters[r][d], vletters[r + 1][d]);
-    }
-    return c;
 }
 
 int main() {
     int N;
-    ifstream file("../Picture Game/test.txt");
-    file >> N;
-    //cin >> N;
-    vector<string> words(2 * N);
-    for (int i = 0; i < 2 * N; i++) {
-        file >> words[i];
-        //cin >> words[i];
+    //ifstream file("../Stone Swapping/test.txt");
+    //file >> N;
+    cin >> N;
+    vector<string> start(N);
+    vector<string> result(N);
+    vector<int> nums;
+    for (int i = 0; i < N; i++) {
+        cin >> start[i];
     }
-    vector<vector<int>> vletters(2 * N);
-    for (int i = 0; i < 2 * N; i++) {
-        vletters[i] = get_letters(words[i]);
+    for (int i = 0; i < N; i++) {
+        cin >> result[i];
     }
-    vector<int> result(26, 0);
-    /*for (auto letters : vletters) {
-        for (auto letter: letters) {
-            cout << letter << " ";
+    //cout << "Start:\n";
+    //disp(start);
+    //cout << "Result:\n";
+    //disp(result);
+    auto nc = ninety_clockwise(start);
+    //cout << "90 Clockwise:\n";
+    //disp(nc);
+    auto oc = one_hundred_and_eighty_degrees_clockwise(start);
+    //cout << "180 Clockwise:\n";
+    //disp(oc);
+    auto tc = two_hundred_and_seventy_degrees_clockwise(start);
+    //cout << "270 Clockwise:\n";
+    //disp(tc);
+    auto hr = horz_reflect(start);
+    //cout << "Horizontally reflected:\n";
+    //disp(hr);
+    if (result == nc) {
+        nums.push_back(1);
+    }
+    if (result == oc) {
+        nums.push_back(2);
+    }
+    if (result == tc) {
+        nums.push_back(3);
+    }
+    if (result == hr) {
+        nums.push_back(4);
+    }
+    auto tmp = hr;
+    for (int i = 0; i < 3; i++) {
+        tmp = ninety_clockwise(tmp);
+        if (tmp == result) {
+            nums.push_back(5);
         }
-        result = result + letters;
-        cout << "\n";
-        disp(letters);
-    }*/
-    for (int i = 0; i < 26; i++) {
-        result[i] = calculate_digit(i, vletters);
     }
-    //cout << "answer: \n";
-    for (auto r : result) {
-        cout << r << " ";
+    if (result == start) {
+        nums.push_back(6);
     }
-    cout << "\n";
+    if (nums.size() == 0) {
+        nums.push_back(7);
+    }
+    sort(nums.begin(), nums.end());
+    cout << nums[0] << "\n";
 }
