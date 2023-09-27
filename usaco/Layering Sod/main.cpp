@@ -7,10 +7,6 @@
 
 using namespace std;
 
-void layer() {
-
-}
-
 char symbol(bool sym) {
     if (sym) {
         return '#';
@@ -33,10 +29,21 @@ void fill_cell(vector<bool> &lawn, const int x, const int y, const int X, const 
     lawn[(y * X) + x] = true;
 }
 
-void fill_grid(vector<bool> &lawn, const int X, const int Y, const pair<int, int> &a, const pair<int, int> &b) {
-    for (int x = a.first - 1; x < b.first; x++) {
-        for (int y = a.second - 1; y < b.second; y++) {
-            cout << x << ',' << y << '\n';
+void fill_grid(vector<bool> &lawn, const int X, const int Y, pair<int, int> a, pair<int, int> b) {
+    int x_one = a.first - 1;
+    int x_two = b.first - 1;
+    int y_one = Y - a.second;
+    int y_two = Y - b.second;
+    if (x_one > x_two) {
+        swap(x_one, x_two);
+    }
+    if (y_one > y_two) {
+        swap(y_one, y_two);
+    }
+    //fill_cell(lawn, x_one, y_one, X, Y);
+    //fill_cell(lawn, x_two, y_two, X, Y);
+    for (int x = x_one; x <= x_two; x++) {
+        for (int y = y_one; y <= y_two; y++) {
             fill_cell(lawn, x, y, X, Y);
         }
     }
@@ -59,13 +66,16 @@ int main() {
         layering_commands[i].first = a;
         layering_commands[i].second = b;
     }
-    //cout << "Grid : \n";
-    //disp_grid(lawn, X, Y);
-    cout << "Filling : \n";
     for (const pair<pair<int, int>, pair<int, int>>& sp : layering_commands) {
         pair<int, int> a = sp.first;
         pair<int, int> b = sp.second;
         fill_grid(lawn, X, Y, a, b);
-        disp_grid(lawn, X, Y);
     }
+    int count = 0;
+    for (const bool b : lawn) {
+        if (b) {
+            count++;
+        }
+    }
+    cout << count << "\n";
 }
