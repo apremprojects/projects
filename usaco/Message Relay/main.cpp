@@ -11,24 +11,6 @@ using namespace std;
 7
 4 2 8 11 16 3 24
 */
-
-/*
-SORT
-7
-2 3 4 8 11 16 24
-    *         *
-SORTED DISTANCE
-1 1 4 3 5 8
-*/
-
-vector<int> dist(const vector<int>& nums) {
-    vector<int> vdist(nums.size() - 1);
-    for (int i = 1; i < nums.size(); i++) {
-        vdist[i - 1] = nums[i] - nums[i - 1];
-    }
-    return vdist;
-}
-
 int main() {
     int N;
     cin >> N;
@@ -37,21 +19,54 @@ int main() {
         cin >> nums[i];
     }
     sort(nums.begin(), nums.end());
-    /*cout << "Sorted : \n";
-    for (int num : nums) {
-        cout << num << " ";
-    }*/
-    //cout << "\n";
-    vector<int> vdist = dist(nums);
-    for (const int d : vdist) {
-        cout << d << "\n";
-    }
-    cout << "Result : \n";
-    int c = 0;
-    for (int i = 1; i < vdist.size(); i++) {
-        if (vdist[i] > vdist[i - 1]) {
-            c++;
+    vector<bool> dir(N);
+    int ans = 0;
+    dir[0] = true;
+    dir[N - 1] = false;
+    vector<int> fr(N, 0);
+    for (int i = 1; i < N - 1; i++) {
+        int left_dist = nums[i] - nums[i - 1];
+        int right_dist = nums[i + 1] - nums[i];
+        dir[i - 1] = false; //false - left, true - right
+        if (right_dist < left_dist) {
+            dir[i - 1] = true;
         }
     }
-    cout << N - 2 - c << "\n";
+    //
+    for (int i = 1; i < N - 1; i++) {
+        if (dir[i - 1]) {
+            fr[i]++;
+        }
+        if (!dir[i + 1]) {
+            fr[i]++;
+        }
+    }
+    //
+    if (!dir[1]) {
+        fr[0] = 1;
+    }
+    if (dir[N - 2]) {
+        fr[N - 1] = 1;
+    }
+    /*
+    for (int i = 1; i < N - 1; i++) {
+        if (dir[i - 1]) {
+            fr[i]++;
+        }
+        if(!dir[i + 1]){
+            fr[i]++;
+        }
+    }
+    */
+    for (int i = 0; i < N; i++) {
+        if (fr[i] == 0) {
+            ans++;
+        }
+    }
+    for (int i = 0; i < N - 1; i++) {
+        if (fr[i + 1] == 1 && fr[i] == 1 && !dir[i + 1] && dir[i]) {
+            ans++;
+        }
+    }
+    cout << ans << "\n";
 }
