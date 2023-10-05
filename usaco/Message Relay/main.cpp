@@ -19,10 +19,8 @@ int main() {
         cin >> nums[i];
     }
     sort(nums.begin(), nums.end());
-    vector<bool> dir(N);
+    vector<bool> dir(N,false);
     int ans = 0;
-    dir[0] = true;
-    dir[N - 1] = false;
     vector<int> fr(N, 0);
     for (int i = 1; i < N - 1; i++) {
         int left_dist = nums[i] - nums[i - 1];
@@ -32,23 +30,14 @@ int main() {
             dir[i - 1] = true;
         }
     }
-    //
-    for (int i = 1; i < N - 1; i++) {
-        if (dir[i - 1]) {
-            fr[i]++;
-        }
-        if (!dir[i + 1]) {
-            fr[i]++;
-        }
-    }
-    //
+    dir[0] = true;
+    dir[N - 1] = false;
     if (!dir[1]) {
         fr[0] = 1;
     }
     if (dir[N - 2]) {
         fr[N - 1] = 1;
     }
-    /*
     for (int i = 1; i < N - 1; i++) {
         if (dir[i - 1]) {
             fr[i]++;
@@ -57,16 +46,25 @@ int main() {
             fr[i]++;
         }
     }
-    */
     for (int i = 0; i < N; i++) {
         if (fr[i] == 0) {
             ans++;
         }
     }
     for (int i = 0; i < N - 1; i++) {
-        if (fr[i + 1] == 1 && fr[i] == 1 && !dir[i + 1] && dir[i]) {
+        if (fr[i + 1] == 1 && fr[i] == 1 && dir[i + 1] == false && dir[i] == true) {
             ans++;
         }
     }
+    cout << "\n";
+    for (int i : fr) {
+        cout << i << " ";
+    }
+    cout << "\n";
+    for (bool b : dir) {
+        cout << b << " ";
+    }
+    cout << "\n";
+    cout << "res -> ";
     cout << ans << "\n";
 }
