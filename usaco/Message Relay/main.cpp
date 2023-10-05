@@ -19,15 +19,15 @@ int main() {
         cin >> nums[i];
     }
     sort(nums.begin(), nums.end());
-    vector<bool> dir(N,false);
+    vector<bool> dir(N, true);
     int ans = 0;
     vector<int> fr(N, 0);
-    for (int i = 1; i < N - 1; i++) {
+    for (int i = 1; i <= N - 2; i++) {
         int left_dist = nums[i] - nums[i - 1];
         int right_dist = nums[i + 1] - nums[i];
-        dir[i - 1] = false; //false - left, true - right
+        dir[i] = false; //false - left, true - right
         if (right_dist < left_dist) {
-            dir[i - 1] = true;
+            dir[i] = true;
         }
     }
     dir[0] = true;
@@ -64,7 +64,5 @@ int main() {
     for (bool b : dir) {
         cout << b << " ";
     }
-    cout << "\n";
-    cout << "res -> ";
     cout << ans << "\n";
 }
