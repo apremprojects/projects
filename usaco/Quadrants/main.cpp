@@ -60,10 +60,6 @@ int bottom_left_quadrant(const vector<pair<int, int>>& pairs, const int x_line, 
 	return c;
 }
 
-int dif(const int a, const int b, const int c, const int d) {
-	return abs(a - b) + abs(c - b) + abs(d - c);
-}
-
 int bottom_right_quadrant(const vector<pair<int, int>>& pairs, const int x_line, const int y_line) {
 	int c = 0;
 	for (auto& i : pairs) {
@@ -95,7 +91,6 @@ int main() {
 			int tmax = std::max(tl, std::max(tr, std::max(bl, br)));
 			if (tmax < smallest_max_quadrant && tl + tr + bl + br == pairs.size()) {
 				smallest_max_quadrant = tmax;
-				//cout << x_line << ", " << y_line << "\n";
 			}
 		}
 	}
