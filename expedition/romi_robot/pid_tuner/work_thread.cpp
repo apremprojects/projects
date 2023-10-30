@@ -1,0 +1,47 @@
+#include "work_thread.h"
+#include <QDebug>
+#include <QSerialPort>
+#include <cmath>
+
+#define M_PI (4.0f*std::atan(1.0f))
+
+WorkThread::WorkThread(QObject* parent, QMutex& mutex, QQueue<ImuData>& queue, const WorkParams& params)
+	: QThread(parent),
+	  mutex(mutex),
+	  queue(queue),
+    params(params) {}
+
+WorkThread::~WorkThread() {
+	stop();
+}
+
+void WorkThread::run() {
+	done = false;
+	char buffer[2048];
+	QSerialPort serial_port;
+	serial_port.setPortName(params.port_name);
+	serial_port.setBaudRate(QSerialPort::Baud115200);
+	serial_port.setDataBits(QSerialPort::Data8);
+	serial_port.setFlowControl(QSerialPort::NoFlowControl);
+	serial_port.setParity(QSerialPort::NoParity);
+	serial_port.open(QIODevice::ReadWrite);
+	if (!serial_port.isOpen()) {
+		qDebug() << "Failed to open serial port: " << serial_port.portName();
+		return;
+	}
+	serial_port.clear();
+}
+
+void WorkThread::read(QSerialPort& port, char* buffer) {
+	if (!port.waitForReadyRead(1000)) {
+		qDebug() << "Serial port read_timeout: " << port.error() << "\n";
+		done = true;
+	}
+	const qint64 bytes_read = port.read(buffer, 2048);
+	buffer[bytes_read] = '\0';
+}
+
+void WorkThread::stop() {
+	done = true;
+	wait();
+}
