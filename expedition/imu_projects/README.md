@@ -1,12 +1,12 @@
-Inertial Measurement Unit (IMU) Raw Data Viewer
+**Inertial Measurement Unit (IMU) Raw Data Viewer**
 
-What is an IMU ([Wikipedia Definition](https://en.wikipedia.org/wiki/Inertial_measurement_unit))?
+**What is an IMU ([Wikipedia Definition](https://en.wikipedia.org/wiki/Inertial_measurement_unit))?**
 
 An IMU measures various physical parameters in all 3-axes (3D), like angular rate (how fast it is turning in one direction), acceleration, and magnetic field strength. Some IMUs also measure pressure and temperature. For example, shaking the Polulu IMU (below) in the Y-axis would be observed as Y-axis acceleration.
 
 ![](https://lh7-us.googleusercontent.com/t9l3ruqOE-mQLxreXB9-4FUAn1uZIgL5IYlfNtF3v17W4TDYxnbm66Wyj8TaUy_1VsXTKCiwk95W2OTypAg0-XO4yuOToHUI-9viTO1b57s006xhkCcX6JkT9aGSbaCX2NlAKp1XswVJch4Hu7zcxGs)
 
-How do IMUs work?
+**How do IMUs work?**
 
 Specialty IMUs used in full-scale planes and other critical applications typically operate using gyroscopic or optical mechanics. Gyroscopic specialty IMUs, which use gyroscopic forces to keep a ring level (shown below), spin a mass (the rotor) at high speed. The gyroscopic forces keep the ring level, providing a stable basis to measure against. While the gyroscope may not be level, the rotor will be level as long as it spins. However, spinning the rotor is prone to failure, as the motor can break. 
 
@@ -20,7 +20,7 @@ Also, all of the earlier IMUs can be integrated with other sensors, like tempera
 
 (left to right, gyroscope, ring laser gyroscope, and MEMS gyroscope)
 
-Why did I choose this project?
+**Why did I choose this project?**
 
 ![](https://lh7-us.googleusercontent.com/06fwX4k7rLzynak49m7B4jXngJx2pBWcomsCx-5y5PGIMVM1cIlsFRGnTk6IEmSsfl-8SwxE-GkcR_vbfcr5Qz63aq6mnObX1PgvON2VpNYPIBDItq1wJxUtXiHwA3ri8AmKjqnIDahdUqTvw9zWJDE)
 
@@ -28,7 +28,7 @@ I chose this project because I was interested in how robots, drones, and planes 
 
 ![](https://lh7-us.googleusercontent.com/R3cvjmnCD5UM2Vy0E8O8W3bkh9hw5-Mcv3YV9Vf4CxXLLBfxUHiYKF0gWBaCDN8EpcQvIzF9IRyRQZKfJa7oGQU80Q5Jeo_ZDFD6fIx65a2aFmk9tXUQ9eGNjZhlh4vTQNdmepNFC8Up81YcmZ7jRec)
 
-Hardware Details
+**Hardware Details**
 
 1.  [Pololu MiniIMU-9 v5](https://www.pololu.com/product/2738) - The Pololu MinIMU-9 v5 is an inertial measurement unit (IMU) that packs an LSM6DS33 3-axis gyro and 3-axis accelerometer and an LIS3MDL 3-axis magnetometer onto a tiny 0.8" × 0.5" board. An I²C interface accesses nine independent rotation, acceleration, and magnetic measurements that can be used to calculate the sensor's absolute orientation. 
 
@@ -48,8 +48,12 @@ Hardware Details
 
 The hardware in my project is an IMU (listed above) and an Arduino Micro (also listed above). The Arduino is connected to the IMU, and the two communicate over I2C. The computer communicates with the Arduino over a USB serial link. To initiate communication, the ASCII character 's' is sent over serial as a "heartbeat" character, and for the next 250ms, the Arduino sends data. To get a continuous stream of data, the ASCII "heartbeat" character is sent every 250ms. The details sent by the Arduino include accelerometer data, gyroscope data, magnetometer data, and a timestamp.![](https://lh7-us.googleusercontent.com/n5Ul4_AJLVCjdGgMKKfDdl2YFodPbUDfVCC98f9jWMttZue17wNMl2Ui2iMrGWustvb1zznv4zr1l1JVoQ-uJAyhwzPbng2F0LXM5apLfGBGGEbUzKzvhTCxYfs1yMYRQpqGv1KM-o_ybfHCUjJRD4c)
 
-Software
+**Software**
 
 To display the data collected from the Arduino, I use Qt and OpenGL. Upon opening my program, the user will see one 3D Magnetometer widget, as well as two 2D widgets (one for acceleration and one for angular rate). I use OpenGL to draw the 2D graphs and the 3D point data of the magnetometer data. A duration and serial port selector are available. Pressing "Start" starts data collection/display, and pressing "Stop" ends data collection and display. A checkbox entitled "Shift center" is available to shift the magnetometer data so it is centered around the origin (a helpful feature as it is likely to be off-center).
 
 The code is cross-platform and can run on both Linux and Windows.
+
+**Demo**
+
+My demo is  available here: https://youtu.be/JowkhfD-yT4
