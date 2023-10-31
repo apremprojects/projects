@@ -2,8 +2,6 @@
 #include <QImage>
 
 struct GraphParams {
-  size_t width;
-  size_t height;
   float x_start;
   float x_end;
   size_t x_ticks;
@@ -14,4 +12,4 @@ struct GraphParams {
   QString title;
 };
 
-QImage createGraphTemplate(const GraphParams& params);
+QImage createGraphTemplate(const size_t width, const size_t height, const GraphParams& params);
