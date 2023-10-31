@@ -139,7 +139,7 @@ void GraphWidget::paintGL() {
     program->setAttribute("x_coord", *t_buffer);
     program->setAttribute("y_coord", *buffers[i]);
     program->setUniform("x_offset", time_offset);
-    program->setUniform("scale_factor_x", 2000.0f / (ring_buffer_size * 25));
+    program->setUniform("scale_factor_x", 2000.0f / (ring_buffer_size * sampling_time));
     program->setUniform("scale_factor_y", 1.0f/(params.y_end));
     program->setUniform("color", colors[i]);
     program->enableVertexAttribArray("x_coord");
@@ -184,15 +184,14 @@ void GraphWidget::setData(const GraphData& data) {
     repaint();
 }
 
-
-void GraphWidget::clear() {
+void GraphWidget::reserve(const size_t size, const size_t st) {
     makeCurrent();
-    std::vector<float> data(ring_buffer_size, 0.0f);
+    ring_buffer_size = size;
+    sampling_time = st;
     ring_index = 0;
-    v_buffer->load(data);
-    v_sp_buffer->load(data);
-    err_buffer->load(data);
-    t_buffer->load(data);
-    qDebug() << "Clearing Buffer...";
+    v_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, size);
+    v_sp_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, size);
+    err_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, size);
+    t_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, size);
     doneCurrent();
 }

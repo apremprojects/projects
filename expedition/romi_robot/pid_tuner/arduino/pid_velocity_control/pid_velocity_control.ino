@@ -126,7 +126,6 @@ void loop() {
   int16_t pwm_left, pwm_right;
   motors_pid.process(static_cast<float>(v_left), static_cast<float>(v_right), dt, pwm_left, pwm_right);
   Romi32U4Motors::setSpeeds(pwm_left, pwm_right);
-  //
   sprintf(line, "s %hd, %hd, %hd, %hd, %hd, %hd, %lu, %u\r\n", 
     v_left, v_right, pwm_left, pwm_right, 
     counts_left, counts_right, curr_time_ms, tick_count);

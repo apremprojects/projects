@@ -29,7 +29,7 @@ void WorkThread::run() {
 		return;
 	}
 	serial_port->clear();
-	setGains(params.kp, params.ki, params.kd, 25);
+	setGains(params.kp, params.ki, params.kd, params.sampling_time_ms);
 	setSetpoints(params.left_sp, params.right_sp);
 	while (!done) {
 		if (params.sp_changed) {
@@ -56,7 +56,7 @@ void WorkThread::run() {
 		}
 		qDebug() << "Tick_count -> " << tick_count;
 	}
-	setGains(0, 0, 0, 25);
+	setGains(0, 0, 0, params.sampling_time_ms);
 	delete serial_port;
 }
 
@@ -73,7 +73,7 @@ void WorkThread::read() {
 }
 
 void WorkThread::setGains(const int kp, const int ki, const int kd, const int period_ms) {
-	sprintf(buffer, "k %ld, %ld, %ld, %d\r\n", kp, ki, kd, 25);
+	sprintf(buffer, "k %ld, %ld, %ld, %d\r\n", kp, ki, kd, params.sampling_time_ms);
 	serial_port->write(buffer);
 	serial_port->waitForBytesWritten();
 	read();

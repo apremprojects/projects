@@ -18,16 +18,19 @@ static constexpr float g = 9.08f;
 
 struct GraphData {
 	GraphData(const size_t capacity){
-		v.reserve(capacity);
-		v_sp.reserve(capacity);
-		err.reserve(capacity);
-		t.reserve(capacity);
+		reserve(capacity);
 	}
 	void clear() {
 		v.resize(0);
 		v_sp.resize(0);
 		err.resize(0);
 		t.resize(0);
+	}
+	void reserve(const size_t capacity) {
+		v.reserve(capacity);
+		v_sp.reserve(capacity);
+		err.reserve(capacity);
+		t.reserve(capacity);
 	}
 	size_t size() const {
 		return v.size();
@@ -44,7 +47,7 @@ public:
   GraphWidget(QWidget* parent);
   void setData(const GraphData& data);
   void setParams(const GraphParams& _params);
-  void clear();
+  void reserve(const size_t size, const size_t st);
 private:
   void initializeGL() override;
   void paintGL() override;
@@ -64,6 +67,7 @@ private:
   std::unique_ptr<opengl::Buffer<float, GL_ARRAY_BUFFER>> err_buffer;
   std::unique_ptr<opengl::Buffer<float, GL_ARRAY_BUFFER>> t_buffer;
 
+  size_t sampling_time = 25;
   size_t ring_index = 0;
   size_t ring_buffer_size = 0;
   float time_offset = 0.0f;

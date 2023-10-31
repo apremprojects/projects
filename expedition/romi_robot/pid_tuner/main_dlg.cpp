@@ -11,8 +11,8 @@ MainDlg::MainDlg()
     right_wheel(40 * 60){
   setupUi(this);
   work_thread = new WorkThread(this, mutex, queue, work_params);
-  left_widget->setParams({0.0, 60, 12, -30, 30, 10, 25, "Left Wheel"});
-  right_widget->setParams({0.0, 60, 12, -30, 30, 10, 25, "Right Wheel"});
+  left_widget->setParams({0.0, 60, 12, -25, 25, 10, "Left Wheel"});
+  right_widget->setParams({0.0, 60, 12, -25, 25, 10, "Right Wheel"});
   connect(&timer, SIGNAL(timeout()), this, SLOT(timeout()));
   connect(start_button, SIGNAL(clicked()), this, SLOT(buttonClicked()));
   connect(sp_button, SIGNAL(clicked()), this, SLOT(spButtonClicked()));
@@ -25,18 +25,22 @@ void MainDlg::buttonClicked() {
   work_params.kd = edit_kd->text().toInt();
   work_params.left_sp = left_sp->value();
   work_params.right_sp = right_sp->value();
-
+  work_params.sampling_time_ms = edit_st->text().toInt();
   if (start_button->text() == "Start") {
-    timer.start(25);
-    left_widget->clear();
-    right_widget->clear();
+    const size_t buffer_size = 60000 / work_params.sampling_time_ms;
+    left_widget->reserve(buffer_size, work_params.sampling_time_ms);
+    right_widget->reserve(buffer_size, work_params.sampling_time_ms);
+    left_wheel.reserve(buffer_size);
+    right_wheel.reserve(buffer_size);
     queue.clear();
+    timer.start(work_params.sampling_time_ms);
     work_thread->start(QThread::HighestPriority);
   } else {
     work_thread->stop();
     timer.stop();
   }
   controls->setDisabled(work_thread->isRunning());
+  gains_group->setDisabled(work_thread->isRunning());
   start_button->setText(work_thread->isRunning() ? "Stop" : "Start");
 }
 
@@ -68,6 +72,7 @@ void MainDlg::timeout() {
     left_wheel.clear();
     right_wheel.clear();
     controls->setDisabled(work_thread->isRunning());
+    gains_group->setDisabled(work_thread->isRunning());
     start_button->setText(work_thread->isRunning() ? "Stop" : "Start");
 }
 
