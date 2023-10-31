@@ -13,11 +13,11 @@ public:
 
   void setTarget(const float v_left, const float v_right);
   void setGains(const float kp, const float ki, const float kd);
+  float getKp() const {return motor_left.getKp();}
+  float getKi() const {return motor_left.getKi();}
+  float getKd() const {return motor_left.getKd();}
 
 private:
-  const float Kp = 1000.0f;
-  const float Ki = 3000.0f;
-  const float Kd = 1.0f;
 
   PidControl motor_left;
   PidControl motor_right;

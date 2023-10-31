@@ -87,22 +87,20 @@ void GraphWidget::initializeGL() {
   }
 
   // Acceleration measurement range is +/- 16g.
-  const auto image = createGraphTemplate(params);
+  const auto image = createGraphTemplate(width(), height(), params);
   program = std::make_unique<Program>(shaders);
   bg_program = std::make_unique<Program>(bg_shaders);
   bg_texture = std::make_unique<Texture2D>(GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, image.width(), image.height(), image.bits());
-  x_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
-  y_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
-  z_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
+  v_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
+  v_sp_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
+  err_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
   t_buffer = std::make_unique<Buffer<float, GL_ARRAY_BUFFER>>(GL_DYNAMIC_DRAW, ring_buffer_size);
 }
 
 void GraphWidget::resizeGL(int width, int height) {
   glViewport(0, 0, width, height);
-  params.width = width;
-  params.height = height;
-  params.x_ticks = ((width * 24) / 963) + 1;
-  const auto image = createGraphTemplate(params);
+  //params.x_ticks = ((width * params.x_ticks) / 963) + 1;
+  const auto image = createGraphTemplate(width, height, params);
   bg_texture = std::make_unique<Texture2D>(GL_RGBA, GL_RGBA, GL_UNSIGNED_BYTE, image.width(), image.height(), image.bits());
 }
 
@@ -128,23 +126,10 @@ void GraphWidget::setParams(const GraphParams& _params) {
 }
 
 void GraphWidget::paintGL() {
-  {
-    if (clear_flag) {
-        std::vector<float> data(ring_buffer_size, 0.0f);
-        qDebug() << x_buffer->size();
-        ring_index = 0;
-        x_buffer->load(data);
-        y_buffer->load(data);
-        z_buffer->load(data);
-        t_buffer->load(data);
-        clear_flag = false;
-        qDebug() << "Clearing Ring Buffer...";
-    }
-  }
   paintBackground();
 
   const std::array<Buffer<float, GL_ARRAY_BUFFER>*, 3> buffers = {
-    x_buffer.get(), y_buffer.get(), z_buffer.get()
+    v_buffer.get(), v_sp_buffer.get(), err_buffer.get()
   };
 
   const std::array<Vector3f, 3> colors = { Vector3f(1.0f, 0.0f, 0.0f), Vector3f(0.0f, 1.0f, 0.0f), Vector3f(0.0f, 0.0f, 1.0f) };
@@ -177,29 +162,37 @@ void GraphWidget::setData(const GraphData& data) {
     makeCurrent();
     if (ring_index + data.size() > ring_buffer_size) {
         int free_space = ring_buffer_size - ring_index;
-        x_buffer->load(ring_index, free_space, data.x.data());
-        x_buffer->load(0, data.size() - free_space, data.x.data());
-        y_buffer->load(ring_index, free_space, data.y.data());
-        y_buffer->load(0, data.size() - free_space, data.y.data());
-        z_buffer->load(ring_index, free_space, data.z.data());
-        z_buffer->load(0, data.size() - free_space, data.z.data());
+        v_buffer->load(ring_index, free_space, data.v.data());
+        v_buffer->load(0, data.size() - free_space, data.v.data());
+        v_sp_buffer->load(ring_index, free_space, data.v_sp.data());
+        v_sp_buffer->load(0, data.size() - free_space, data.v_sp.data());
+        err_buffer->load(ring_index, free_space, data.err.data());
+        err_buffer->load(0, data.size() - free_space, data.err.data());
         t_buffer->load(ring_index, free_space, data.t.data());
         t_buffer->load(0, data.size() - free_space, data.t.data());
-        ring_index = (ring_index + data.x.size()) % ring_buffer_size;
+        ring_index = (ring_index + data.size()) % ring_buffer_size;
     }
     else {
-        x_buffer->load(ring_index, data.x.size(), data.x.data());
-        y_buffer->load(ring_index, data.y.size(), data.y.data());
-        z_buffer->load(ring_index, data.z.size(), data.z.data());
+        v_buffer->load(ring_index, data.v.size(), data.v.data());
+        v_sp_buffer->load(ring_index, data.v_sp.size(), data.v_sp.data());
+        err_buffer->load(ring_index, data.err.size(), data.err.data());
         t_buffer->load(ring_index, data.t.size(), data.t.data());
-        ring_index = (ring_index + data.x.size()) % ring_buffer_size;
+        ring_index = (ring_index + data.size()) % ring_buffer_size;
     }
     time_offset = data.t.back() - 60.0f;
     doneCurrent();
     repaint();
 }
 
-void GraphWidget::clearRingBuffers() {
-    clear_flag = true;
-    repaint();
+
+void GraphWidget::clear() {
+    makeCurrent();
+    std::vector<float> data(ring_buffer_size, 0.0f);
+    ring_index = 0;
+    v_buffer->load(data);
+    v_sp_buffer->load(data);
+    err_buffer->load(data);
+    t_buffer->load(data);
+    qDebug() << "Clearing Buffer...";
+    doneCurrent();
 }

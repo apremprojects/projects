@@ -113,6 +113,8 @@ void loop() {
   ++tick_count_last_hb;
   if (tick_count_last_hb > halt_count_ticks || tick_count > duration_in_ticks) {
     motors_pid.setTarget(0.0f, 0.0f);
+    Romi32U4Motors::setSpeeds(0, 0);
+    return;
   }
   float dt = ((float)diff_ms)/1000.0f;
   int16_t counts_left = Romi32U4Encoders::getCountsLeft();
@@ -124,10 +126,9 @@ void loop() {
   int16_t pwm_left, pwm_right;
   motors_pid.process(static_cast<float>(v_left), static_cast<float>(v_right), dt, pwm_left, pwm_right);
   Romi32U4Motors::setSpeeds(pwm_left, pwm_right);
-  if (motors_pid.leftTarget() != 0.0f || motors_pid.rightTarget() != 0.0f) {
-    sprintf(line, "s %hd, %hd, %hd, %hd, %hd, %hd, %lu, %u\r\n", 
-      v_left, v_right, pwm_left, pwm_right, 
-      counts_left, counts_right, curr_time_ms, tick_count);
-    Serial.print(line);
-  }
+  //
+  sprintf(line, "s %hd, %hd, %hd, %hd, %hd, %hd, %lu, %u\r\n", 
+    v_left, v_right, pwm_left, pwm_right, 
+    counts_left, counts_right, curr_time_ms, tick_count);
+  Serial.print(line);
 }

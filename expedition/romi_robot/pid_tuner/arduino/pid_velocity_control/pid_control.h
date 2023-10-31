@@ -14,6 +14,9 @@ public:
   float currentTarget() const { return target; }
   float currentError() const { return error; }
   float integralError() const { return error_sum; }
+  float getKp() const {return Kp;}
+  float getKi() const {return Ki;}
+  float getKd() const {return Kd;}
 
 private:
   int16_t getSpeed(const float error, const float der_error, const float dt, float& sum_error);

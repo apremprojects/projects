@@ -15,14 +15,14 @@ public:
 private slots:
   void timeout();
   void buttonClicked();
+  void spButtonClicked();
 
 private:
   QTimer timer;
   QMutex mutex;
-  QQueue<ImuData> queue;
-  GraphData acc_data;
-  GraphData gyro_data;
-  std::vector<Eigen::Vector3f> mag_data;
+  QQueue<WheelData> queue;
+  GraphData left_wheel;
+  GraphData right_wheel;
   WorkParams work_params;
   WorkThread* work_thread = nullptr;
 };
