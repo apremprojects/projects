@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_6">
      <item>
-      <widget class="GraphWidget" name="left_wheel">
+      <widget class="GraphWidget" name="left_widget">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -27,7 +27,7 @@
       </widget>
      </item>
      <item>
-      <widget class="GraphWidget" name="right_wheel">
+      <widget class="GraphWidget" name="right_widget">
        <property name="maximumSize">
         <size>
          <width>16777215</width>
@@ -53,6 +53,19 @@
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
       <item>
        <widget class="QGroupBox" name="gains_group">
         <property name="title">
@@ -139,6 +152,36 @@
              <property name="minimumSize">
               <size>
                <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>T</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="edit_st">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
                <height>0</height>
               </size>
              </property>
@@ -318,34 +361,21 @@
            </item>
           </layout>
          </item>
-         <item>
-          <widget class="QPushButton" name="start_button">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Start</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
       <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+       <widget class="QPushButton" name="start_button">
+        <property name="maximumSize">
          <size>
-          <width>20</width>
-          <height>330</height>
+          <width>16777215</width>
+          <height>30</height>
          </size>
         </property>
-       </spacer>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
