@@ -8,7 +8,6 @@ struct GraphParams {
   float y_start;
   float y_end;
   size_t y_ticks;
-  float sampling_period;
   QString title;
 };
 
