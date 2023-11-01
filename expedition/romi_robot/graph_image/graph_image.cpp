@@ -8,7 +8,7 @@ QImage createGraphTemplate(const size_t width, const size_t height, const GraphP
   QImage image(width, height, QImage::Format_ARGB32);
   QPainter painter(&image);
   painter.fillRect(QRect(0, 0, width, height), QColor(0, 0, 0));
-  painter.setPen(QPen(QColor(0x00, 0xFF, 0xFF)));
+  painter.setPen(QPen(QColor(0xFF, 0xFF, 0xFF)));
   painter.drawLine(0, height / 2, width, height / 2);
   painter.drawLine(0, 0, 0, height);
   size_t tick_width = width / params.x_ticks;
