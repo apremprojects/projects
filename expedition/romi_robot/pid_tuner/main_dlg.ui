@@ -52,7 +52,7 @@
        <height>16777215</height>
       </size>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
+     <layout class="QVBoxLayout" name="verticalLayout_7">
       <item>
        <widget class="QGroupBox" name="gains_group">
         <property name="title">
@@ -155,7 +155,7 @@
               </size>
              </property>
              <property name="text">
-              <string>1</string>
+              <string>100</string>
              </property>
             </widget>
            </item>
@@ -289,12 +289,69 @@
        </widget>
       </item>
       <item>
+       <widget class="QGroupBox" name="pwm_group">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="title">
+         <string>PWM</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Left</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="pwm_left">
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Right</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="pwm_right">
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <widget class="QGroupBox" name="v_group">
         <property name="enabled">
          <bool>false</bool>
         </property>
         <property name="title">
-         <string>Velocity</string>
+         <string>Velocity (m/s)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -313,7 +370,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="v_left"/>
+            <widget class="QLineEdit" name="v_left">
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -330,7 +391,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="v_right"/>
+            <widget class="QLineEdit" name="v_right">
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -388,6 +453,68 @@
         <property name="text">
          <string>Start</string>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel{color: rgb(255, 0, 0);}</string>
+           </property>
+           <property name="text">
+            <string>Red - Velocity in ticks</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="margin">
+            <number>4</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_14">
+           <property name="styleSheet">
+            <string notr="true">QLabel{color: rgb(0, 200, 0);}</string>
+           </property>
+           <property name="text">
+            <string>Green - Velocity setpoint</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="margin">
+            <number>4</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="styleSheet">
+            <string notr="true">QLabel{color: rgb(0, 0, 255);}</string>
+           </property>
+           <property name="text">
+            <string>Blue - Error</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="margin">
+            <number>4</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>

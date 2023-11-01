@@ -4,6 +4,10 @@
 
 #define M_PI (4.0f*std::atan(1.0f))
 
+float ticksToVelocity(const int ticks, const int st_ms) {
+    return (static_cast<float>(ticks * 1000 / st_ms) / 1440.0f) * 0.07f * M_PI;
+}
+
 MainDlg::MainDlg()
   : QDialog(nullptr, Qt::WindowMaximizeButtonHint | Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint),
     work_params({"COM3", 0, 0, 0, 0, 0, 25, 0}),
@@ -26,6 +30,8 @@ void MainDlg::buttonClicked() {
   work_params.left_sp = left_sp->value();
   work_params.right_sp = right_sp->value();
   work_params.sampling_time_ms = edit_st->text().toInt();
+  work_params.duration_sec = edit_duration->text().toInt();
+
   if (start_button->text() == "Start") {
     const size_t buffer_size = 60000 / work_params.sampling_time_ms;
     left_widget->reserve(buffer_size, work_params.sampling_time_ms);
@@ -45,11 +51,19 @@ void MainDlg::buttonClicked() {
 }
 
 void MainDlg::timeout() {
+    int left_spd = 0;
+    int right_spd = 0;
+    int left_pwm = 0;
+    int right_pwm = 0;
     {
         QMutexLocker lock(&mutex);
         while (!queue.empty()) {
             const auto data = queue.front();
             queue.pop_front();
+            left_spd = data.left_v;
+            right_spd = data.right_v;
+            left_pwm = data.left_pwm;
+            right_pwm = data.right_pwm;
             left_wheel.v.push_back(data.left_v);
             right_wheel.v.push_back(data.right_v);
 
@@ -69,6 +83,10 @@ void MainDlg::timeout() {
     }
     left_widget->setData(left_wheel);
     right_widget->setData(right_wheel);
+    v_left->setText(QString::number(ticksToVelocity(left_spd, work_params.sampling_time_ms)));
+    v_right->setText(QString::number(ticksToVelocity(right_spd, work_params.sampling_time_ms)));
+    pwm_left->setText(QString::number(left_pwm));
+    pwm_right->setText(QString::number(right_pwm));
     left_wheel.clear();
     right_wheel.clear();
     controls->setDisabled(work_thread->isRunning());

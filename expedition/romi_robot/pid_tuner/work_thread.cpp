@@ -36,16 +36,12 @@ void WorkThread::run() {
 			setSetpoints(params.left_sp, params.right_sp);
 		}
 		read();
-		qDebug() << "------ Here ------";
 		unsigned tick_count;
 		int16_t left_v, right_v;
 		int16_t left_pwm, right_pwm;
 		unsigned long current_time;
-		int16_t counts_left, counts_right;
-		sscanf(buffer, "s %hd, %hd, %hd, %hd, %hd, %hd, %lu, %u\r\n", &left_v, &right_v, &left_pwm, &right_pwm, &counts_left, &counts_right, &current_time, &tick_count);
-		WheelData wheel = {left_v, right_v, params.left_sp, params.right_sp, left_pwm, right_pwm, static_cast<float>(current_time) / 1000.0f};
-
-		qDebug() << "------ Here 1 ------";
+		sscanf(buffer, "s %hd, %hd, %hd, %hd, %lu, %u\r\n", &left_v, &right_v, &left_pwm, &right_pwm, &current_time, &tick_count);
+		WheelData wheel = { left_v, right_v, params.left_sp, params.right_sp, left_pwm, right_pwm, static_cast<float>(current_time) / 1000.0f };
 		{
 			QMutexLocker locker(&mutex);
 			queue.push_back(wheel);
@@ -54,7 +50,9 @@ void WorkThread::run() {
 			serial_port->write("s");
 			serial_port->waitForBytesWritten();
 		}
-		qDebug() << "Tick_count -> " << tick_count;
+		if (tick_count > params.duration_sec * 1000 / params.sampling_time_ms) {
+			done = true;
+		}
 	}
 	setGains(0, 0, 0, params.sampling_time_ms);
 	delete serial_port;
@@ -69,7 +67,6 @@ void WorkThread::read() {
 	}
 	const qint64 bytes_read = serial_port->read(buffer, 2048);
 	buffer[bytes_read] = '\0';
-	qDebug() << bytes_read << ", " << buffer;
 }
 
 void WorkThread::setGains(const int kp, const int ki, const int kd, const int period_ms) {
@@ -79,7 +76,7 @@ void WorkThread::setGains(const int kp, const int ki, const int kd, const int pe
 	read();
 }
 void WorkThread::setSetpoints(const int left_wheel, const int right_wheel) {
-	sprintf(buffer, "t %d, %d, %d\r\n", left_wheel, right_wheel, 10000);
+	sprintf(buffer, "t %d, %d, %d\r\n", left_wheel, right_wheel, params.duration_sec * 1000 / params.sampling_time_ms);
 	serial_port->write(buffer);
 	serial_port->waitForBytesWritten();
 	read();
@@ -87,5 +84,6 @@ void WorkThread::setSetpoints(const int left_wheel, const int right_wheel) {
 
 void WorkThread::stop() {
 	done = true;
+
 	wait();
 }
