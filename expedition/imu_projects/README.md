@@ -56,4 +56,5 @@ The code is cross-platform and can run on both Linux and Windows.
 
 **Demo**
 
-My demo is  available here: https://youtu.be/JowkhfD-yT4
+My demo is  available here:
+[![IMU DEMO VIDEO](http://img.youtube.com/vi/JowkhfD-yT4/0.jpg)](http://www.youtube.com/watch?v=JowkhfD-yT4 "IMU Demo")
