@@ -14,5 +14,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 find_package(Qt5 REQUIRED COMPONENTS Core SerialPort)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
-add_executable(velocity_pid_test main.cpp)
+add_executable(velocity_pid_test main.cpp romi_robot.cpp romi_robot.h)
 target_link_libraries(velocity_pid_test Qt5::Core Qt5::SerialPort)

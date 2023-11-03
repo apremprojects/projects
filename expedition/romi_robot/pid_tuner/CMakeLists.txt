@@ -16,4 +16,5 @@ find_package(Qt5 REQUIRED COMPONENTS Widgets SerialPort)
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 add_executable(pid_tuner main_dlg.ui main_dlg.h main_dlg.cpp work_thread.h work_thread.cpp graph_widget.h graph_widget.cpp main.cpp)
+target_include_directories(pid_tuner PRIVATE .)
 target_link_libraries(pid_tuner Qt5::Widgets Qt5::SerialPort helper_opengl graph_image)

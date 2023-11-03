@@ -7,4 +7,4 @@ add_subdirectory(./../../helper helper)
 
 add_subdirectory(./graph_image graph_image)
 add_subdirectory(./pid_tuner pid_tuner)
-#add_subdirectory(./velocity_pid_test velocity_pid_test)
+add_subdirectory(./velocity_pid_test velocity_pid_test)
