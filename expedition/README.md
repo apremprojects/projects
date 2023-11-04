@@ -7,7 +7,7 @@
             a. Uses Qt and OpenGL to display a graph of accelerometer data in the X, Y, and Z axes.  
         b. **Raw Magnetometer Viewer** (imu_projects/raw_magnetometer_data)  
             a. Uses Qt and OpenGL to display a 3D graph of magnetometer data in the X, Y, and Z axes  
-![](pid_tuner.png)  
+![](romi_robot/pid_tuner.png)  
 2. **PID tuner** (romi_robot/pid_tuner)  
     a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
