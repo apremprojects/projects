@@ -56,3 +56,17 @@ The code is cross-platform and can run on both Linux and Windows.
 
 My demo is  available here:  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)
+
+**Things I learned**  
+1. Processing raw IMU data
+2. Basics of gyro, accelerometer, and magnetometer data
+3. Using Qt Designer to create user interfaces.
+4. Ring buffers
+
+**Things I applied**  
+1. OpenGL shader programming
+2. Serial communication
+3. Rotation matrices
+4. Basics of the Eigen library
+5. Multithreaded programming
+6. Cross-platform build system with CMake (Works on Windows and Linux)

@@ -43,6 +43,7 @@ commands, and report important details (eg. left/right wheel velocity). Also, as
 3. Microcontroller (Arduino) programming
 4. Robot control using an Xbox controller
 5. PID tuning
+6. Cross-platform build system with CMake (Works on Windows and Linux)
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
