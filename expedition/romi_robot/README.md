@@ -35,10 +35,11 @@ custom tweaks to make it run better on microcontrollers. Compared to regular C/C
 Here is a comprehensive description of my Romi Robot projects.
 ![](pid_tuner.png)  
 1. **PID tuner** (romi_robot/pid_tuner)
-    a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.
+    a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
 2. **Motion Commands** (romi_robot/velocity_pid_test)
-    a. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)
-[![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)
+    a. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
 3. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)
     a. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over bluetooth.
         a. Uses a standard Bluetooth controller, in my case, an XBox controller.
