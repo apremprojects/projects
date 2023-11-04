@@ -33,6 +33,7 @@ custom tweaks to make it run better on microcontrollers. Compared to regular C/C
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
+![](pid_tuner.png)
 1. **PID tuner** (romi_robot/pid_tuner)
     a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.
 2. **Motion Commands** (romi_robot/velocity_pid_test)
