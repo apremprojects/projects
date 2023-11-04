@@ -43,7 +43,7 @@ I chose this project because I was interested in how robots, drones, and planes 
 
 6.  3D printed enclosure to store it in
 
-![](box.jpg)
+![](box.jpg)  
 The hardware in my project is an IMU (listed above) and an Arduino Micro (also listed above). The Arduino is connected to the IMU, and the two communicate over I2C. The computer communicates with the Arduino over a USB serial link. To initiate communication, the ASCII character 's' is sent over serial as a "heartbeat" character, and for the next 250ms, the Arduino sends data. To get a continuous stream of data, the ASCII "heartbeat" character is sent every 250ms. The details sent by the Arduino include accelerometer data, gyroscope data, magnetometer data, and a timestamp.![](https://lh7-us.googleusercontent.com/n5Ul4_AJLVCjdGgMKKfDdl2YFodPbUDfVCC98f9jWMttZue17wNMl2Ui2iMrGWustvb1zznv4zr1l1JVoQ-uJAyhwzPbng2F0LXM5apLfGBGGEbUzKzvhTCxYfs1yMYRQpqGv1KM-o_ybfHCUjJRD4c)
 
 **Software**
