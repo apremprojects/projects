@@ -1,21 +1,19 @@
 #include <QCoreApplication>
-#include "work_thread.h"
-
+#include <QDebug>
 #include <QtGamepad/QGamepadManager>
 #include <QtGamepad/QGamepad>
-
+#include "work_thread.h"
 #include <cmath>
-#include <iostream>
 
 int main(int argc, char** argv) {
 	QCoreApplication app(argc, argv);
 
-  do {
+  while (QGamepadManager::instance()->connectedGamepads().isEmpty()) {
     app.processEvents();
-    std::cout << "\n\rWaiting for Gamepad ...";
-  } while (QGamepadManager::instance()->connectedGamepads().isEmpty());
+    qDebug() << "\n\rWaiting for Gamepad ...";
+  }
   int device_id = QGamepadManager::instance()->connectedGamepads()[0];
-  std::cout << "\n\rGamepad found: " << device_id << "\n";
+  qDebug() << "\n\rGamepad found: " << device_id << "\n";
 
 	WorkThread work_thread("/dev/ttyACM0", &app);
 	work_thread.start();
@@ -26,13 +24,9 @@ int main(int argc, char** argv) {
     auto curr = std::chrono::high_resolution_clock::now();
     const auto time_diff = std::chrono::duration_cast<std::chrono::milliseconds>(curr - prev);
     if (time_diff.count() >= 50) {
-      if (gamepad->buttonL1() || gamepad->buttonR1()) {
-        const int pwm = static_cast<int>(std::ceil(-75.0 * gamepad->axisLeftY()));
-        work_thread.sendCommand(pwm, -pwm);
-      } else {
-        const int pwm = static_cast<int>(std::ceil(-300.0 * gamepad->axisLeftY()));
-        work_thread.sendCommand(pwm, pwm);
-      }
+      const double throttle = -gamepad->axisLeftY();
+      const double yaw = gamepad->axisLeftX();
+      work_thread.sendCommand(throttle, yaw);
       prev = curr;
     }
     app.processEvents();

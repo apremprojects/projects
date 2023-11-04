@@ -16,10 +16,10 @@ find_package(gflags REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Core Gamepad SerialPort)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
-add_subdirectory(./../romi_robot romi_robot)
-
 add_executable(romi_robot_app 
 	       work_thread.h 
-	       work_thread.cpp 
+	       work_thread.cpp
+		   romi_robot.cpp
+		   romi_robot.h
 	       main.cpp)
-target_link_libraries(romi_robot_app Qt5::Core Qt5::Gamepad romi_robot)
+target_link_libraries(romi_robot_app Qt5::Core Qt5::Gamepad Qt::SerialPort)
