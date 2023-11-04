@@ -35,11 +35,14 @@ commands, and report important details (eg. left/right wheel velocity). Also, as
 1. Ring buffer data structures
 2. Circular queue
 3. Inter-thread communication using queues and mutexes
+4. Efficient PID loops on microcontrollers
 
 **Things I applied**  
 1. OpenGL and Qt
 2. Serial communication
 3. Microcontroller (Arduino) programming
+4. Robot control using an Xbox controller
+5. PID tuning
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
