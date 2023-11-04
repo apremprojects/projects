@@ -32,15 +32,26 @@ void WorkThread::run() {
 	setGains(params.kp, params.ki, params.kd, params.sampling_time_ms);
 	setSetpoints(params.left_sp, params.right_sp);
 	while (!done) {
-		if (params.sp_changed) {
+		/*if (params.sp_changed) {
 			setSetpoints(params.left_sp, params.right_sp);
-		}
+		}*/
 		read();
 		unsigned tick_count;
 		int16_t left_v, right_v;
 		int16_t left_pwm, right_pwm;
 		unsigned long current_time;
-		sscanf(buffer, "s %hd, %hd, %hd, %hd, %lu, %u\r\n", &left_v, &right_v, &left_pwm, &right_pwm, &current_time, &tick_count);
+		int duration_in_ticks;
+		int queue_size;
+		sscanf(buffer, "s %hd, %hd, %hd, %hd, %lu, %d, %d, %d\r\n", 
+        &left_v, &right_v, 
+        &left_pwm, &right_pwm, 
+        &current_time, &duration_in_ticks, 
+        &tick_count, &queue_size);
+		qDebug() << buffer;
+		//sscanf(buffer, "s %hd, %hd, %hd, %hd, %lu, %u\r\n", &left_v, &right_v, &left_pwm, &right_pwm, &current_time, &tick_count);
+		if(queue_size < 4){
+			setSetpoints(params.left_sp, params.right_sp);
+		}
 		WheelData wheel = { left_v, right_v, params.left_sp, params.right_sp, left_pwm, right_pwm, static_cast<float>(current_time) / 1000.0f };
 		{
 			QMutexLocker locker(&mutex);
@@ -76,7 +87,7 @@ void WorkThread::setGains(const int kp, const int ki, const int kd, const int pe
 	read();
 }
 void WorkThread::setSetpoints(const int left_wheel, const int right_wheel) {
-	sprintf(buffer, "t %d, %d, %d\r\n", left_wheel, right_wheel, params.duration_sec * 1000 / params.sampling_time_ms);
+	sprintf(buffer, "t %d, %d, %d\r\n", left_wheel, right_wheel, 5);
 	serial_port->write(buffer);
 	serial_port->waitForBytesWritten();
 	read();

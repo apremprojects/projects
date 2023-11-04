@@ -31,7 +31,7 @@ Microcontroller->Pi -> The microcontroller tells the Pi about the motor "throttl
 
 **What does the Microcontroller do?**  
     The microcontroller runs a firmware developed using the Arduino IDE and Arduino language. It is based off C/C++, but has some 
-custom tweaks to make it run better on microcontrollers. Compared to regular C/C++, it is missing many features (like resizable vectors). The Arduino's task is to wait for commands, and upon recieving them, send its status (wheel velocity, wheel "throttle", time units (or ticks), busyness (can it accept more commands?), and more).  
+custom tweaks to make it run better on microcontrollers. Compared to regular C/C++, it is missing many features (like resizable vectors). The Arduino's task is to wait for commands, and upon recieving them, send its status (wheel velocity, wheel "throttle", time units (or ticks), busyness (can it accept more commands?), and more). Also, as a safety precaution, it will stop if disconnected. (it recives a "heartbeat" signal from the Pi, telling that it is listening).  
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
