@@ -47,3 +47,7 @@ Here is a comprehensive description of my Romi Robot projects.
 **What is graph_image?**  
     Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its' axes and numbers
 (used to display 2D graphs). This simplifies things for me as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.
+
+**Is it cross-platform?**  
+    The code is cross-platform (tested on Linux (Raspbian) and Windows). It should be able to run on any platform, however, the 
+intended platform is a Raspberry Pi or similiar SBC.
