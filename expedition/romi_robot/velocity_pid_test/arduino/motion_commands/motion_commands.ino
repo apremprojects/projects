@@ -54,10 +54,10 @@ void setGains() {
   long int kp, ki, kd;
   read_line(line);
   sscanf(line, " %ld, %ld, %ld, %d", &kp, &ki, &kd, &delay_ms);
-  prev_time_ms = millis();
+  //prev_time_ms = millis();
   tick_count_last_hb = 0;
   halt_count_ticks = 1000/delay_ms;
-  sprintf(line, "k: %ld, %ld, %ld, %d, %u, %lu\r\n", kp, ki, kd, delay_ms, halt_count_ticks, prev_time_ms);
+  sprintf(line, "k: %ld, %ld, %ld, %d, %u, %lu\r\n", kp, ki, kd, delay_ms, halt_count_ticks, millis());
   Serial.print(line);
   motors_pid.setGains(static_cast<float>(kp)/1000.0f, static_cast<float>(ki)/1000.0f, static_cast<float>(kd)/1000.0f);
   motors_pid.setTarget(0.0f, 0.0f);
@@ -68,8 +68,8 @@ void setTargets() {
   int left_v, right_v;
   read_line(line);
   sscanf(line, " %d, %d, %u", &left_v, &right_v, &duration_in_ticks);
-  prev_time_ms = millis();
-  sprintf(line, "t: %d, %d, %u, %lu\r\n", left_v, right_v, duration_in_ticks, prev_time_ms);
+  //prev_time_ms = millis();
+  sprintf(line, "t: %d, %d, %u, %lu\r\n", left_v, right_v, duration_in_ticks, millis());
   Serial.print(line);
   MotionCmd m_cmd(left_v, right_v, duration_in_ticks);
   if(!queue.isFull()){
@@ -89,6 +89,12 @@ int16_t velocity(const int16_t curr_count, const int16_t prev_count) {
   const uint16_t prev_sign = ((uint16_t)prev_count) & 0x8000;
   const int16_t diff = (curr_sign == prev_sign)?(curr_count - prev_count):(((uint16_t)curr_count) - prev_count);
   return diff;
+}
+
+void reportBattery(){
+  const uint16_t v = readBatteryMillivolts();
+  sprintf(line, "b: %hu\r\n", v);
+  Serial.print(line);
 }
 
 void setup() {
@@ -117,6 +123,9 @@ void loop() {
       break;
     case 's':
       heartBeat();
+      break;
+    case 'b':
+      reportBattery();
       break;
   }
   unsigned long curr_time_ms = millis();
