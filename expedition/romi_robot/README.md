@@ -4,11 +4,11 @@ AA batteries (which is the recommended manufacturer method), however, there is s
     The robot features two brushed DC motors (which are commonplace in various applications due to their simplicity) and it is 
 controlled by a Pololu A-Star 32U4 (based on a popular ATMega 32U4 microcontroller). This microcontroller is connected to to the motors, and can issue commands to them. However, due to being a microcontroller, it lacks many critical features, like significant processing power, Bluetooth and Wifi connectivity, and the advantages of a familiar Linux programming environment (such as easy programming (microcontroller programming lacks many features)).  
 ![](https://a.pololu-files.com/picture/0J11109.1200x600.jpg?941cfd35ed2641cf22f5120ca7176958)  
-(the black PCB is the Polulu A-Star 32U4)
+(the black PCB is the Polulu A-Star 32U4)  
     To supplement the microcontroller, and perform more computationally complex and advanced tasks, a Raspberry Pi is connected to the 
 microcontroller. The Raspberry Pi is a SBC(single board computer) that is the size of a credit-card. While it may be small, it still packs a significant amount of features, even being able to be connected to a monitor, keyboard, and mouse and used like a normal desktop with the included Raspbian OS (being a tiny device, it cannot run Windows, but it runs a version of Linux with basic productivity features (like a file manager, full browser, and Python/C/C++ programming suite)). As a result, most of the code that will run on a standard Windows laptop will run on the Pi, which was helpful as I prefer to program in Windows.  
 ![](https://a.pololu-files.com/picture/0J9406.600x480.jpg?5fdb7348a15ae23dc870aee4e1fe0041)  
-(the green PCB is the Raspberry Pi)
+(the green PCB is the Raspberry Pi)  
     In all of my projects, the Pi first recieves a set of commands (a .txt file, user input, or a Bluetooth joystick), does some 
 calculations (breaking it down into a simple set of very basic movement commands (do X for Y time units)), and sends these simplified movement commands to the microcontoller, removing the heavy lifting from the microcontroller. A good analogy would be an architect converting a complex architectural diagram to basic instructions (eg. Put this screw in this place).  
 
