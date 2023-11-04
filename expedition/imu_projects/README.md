@@ -15,8 +15,7 @@ Highly sophisticated IMUs use ring laser gyros, which use the properties of lase
 Consumer-grade IMUs used in small-scale drones, phones, etc. use solid-state principles and are extremely small. An example of this would be the Polulu MiniIMU which  I use. They are made out of extremely tiny silicon circuits and are made like other semiconductors. They measure acceleration, angular rate, and magnetic field along XYZ planes
 
 Also, all of the earlier IMUs can be integrated with other sensors, like temperature, pressure, and acceleration. As long as all the other sensors are on the same circuit board, it is considered an IMU.
-
-![](https://lh7-us.googleusercontent.com/eTkUESfjzlpqrtSJ5ucGSJ3toAdSONin1jMwE-TGV4IF4vK97I2cOZhwjcSG9m1xCo-7cOapzNdWgPWMlsiYnah7LDHkftuovtbHnZpblFWjKbcqvYTwqhlQI0pEfLFYK7a95mY7U0acn0W5OmMfw4w)![](https://lh7-us.googleusercontent.com/n52wifqR03rGnAL2XLuYszRlUY8x211WaLmcvH9U90zP18HMO2ivnSodMR83rX7ErFKiZhDCZiCqNL0aZGqNcRRtP4nRh5K6VdYdEuC9hVZOvynOSH89AUEhVerYDMkjEBW40jhjB8Z-YrTzGmG7APM)![](https://lh7-us.googleusercontent.com/dg4Qj98kIStT8kXNvvj1vWBOaWo_UiPzMV0rE6qQD3HepP4wF7jj7-i9j8WVSIkY0qNQnkLLNnWIBsC-qcQiRqXSUwITv7QTljGdjrn1Zkf1_syEVcDwsWuSlmZnXR-aRGo0y3us4mEVrkppbT7BMn8)
+![](imu_image.png)  
 
 (left to right, gyroscope, ring laser gyroscope, and MEMS gyroscope)
 
