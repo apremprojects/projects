@@ -3,8 +3,8 @@
 ![](robot_top.jpg)
 (Above, my particular robot)  
 **What is the Romi Robot?**  
-    The Polulu Romi Robot, which I will refer to as the Romi Robot, is a simple, 2-wheeled robot. It can be powered from a set of 4-6
-AA batteries (which is the recommended manufacturer method), however, there is support to modify the robot to accept a 2S (7.4 volt) rechargable LiPo(Lithium-Polymer) battery (the kind used in hobbyist RC cars and drones). I chose to modify the robot to accept this new LiPo battery as the AA batteries were cumbersome to install and needed frequent charging. I ended up having to install a 3D-printed battery mount, which I made using my Creality K1 3D printer. This mount dramatically increased the ease of use of the robot, as it kept the battery securely attached AND was easily removable with a standard screwdriver.  
+    The Polulu Romi Robot, which I will refer to as the Romi Robot, is a simple, 2-wheeled robot. It can be powered from a set of 6
+AA batteries (which is the recommended manufacturer method), however, with the Raspberry Pi connected, the battery drains quickly, and I decided to modify the robot to accept a 2S (7.4 volt) rechargable LiPo (Lithium-Polymer) battery (the kind used in hobbyist RC cars and drones). I chose to modify the robot to accept this new LiPo battery as the AA batteries were cumbersome to install and needed frequent charging. I ended up having to install a 3D-printed battery mount, which I made using my Creality K1 3D printer. This mount dramatically increased the ease of use of the robot, as it kept the battery securely attached AND was easily removable with a standard screwdriver.  
     The robot features two brushed DC motors (which are commonplace in various applications due to their simplicity) and it is 
 controlled by a Pololu A-Star 32U4 (based on a popular ATMega 32U4 microcontroller). This microcontroller is connected to to the motors, and can issue commands to them. However, due to being a microcontroller, it lacks many critical features, like significant processing power, Bluetooth and Wifi connectivity, and the advantages of a familiar Linux programming environment (such as easy programming (microcontroller programming lacks many features)).
     To supplement the microcontroller, and perform more computationally complex and advanced tasks, a Raspberry Pi is connected to the 
@@ -41,7 +41,7 @@ Here is a comprehensive description of my Romi Robot projects.
     a. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
 3. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)
-    a. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over bluetooth.
+    a. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.
         a. Uses a standard Bluetooth controller, in my case, an XBox controller.
 
 **What is graph_image?**  
