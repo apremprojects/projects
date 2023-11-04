@@ -80,7 +80,6 @@ void loop() {
     mode = STOP;
     return;
   }
-
   if (mode == TRANSMIT) {
     imu.read();
     mag.read();
