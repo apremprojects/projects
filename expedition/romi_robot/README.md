@@ -29,7 +29,17 @@ Microcontroller->Pi -> The microcontroller tells the Pi about the motor "throttl
 
 **What does the Microcontroller do?**  
     The microcontroller runs a firmware developed in C/C++. The microcontroller's task is to wait for 
-commands, and report important details (eg. left/right wheel velocity). Also, as a safety precaution, it will stop if disconnected.  
+commands, and report important details (eg. left/right wheel velocity). Also, as a safety precaution, it will stop if disconnected. 
+
+**Things I learned this project**    
+1. Ring buffer data structures
+2. Circular queue
+3. Inter-thread communication using queues and mutexes
+
+**Things I applied**  
+1. OpenGL and Qt
+2. Serial communication
+3. Microcontroller (Arduino) programming
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
@@ -49,5 +59,5 @@ Here is a comprehensive description of my Romi Robot projects.
 (used to display 2D graphs). This simplifies things for me as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.
 
 **Is it cross-platform?**  
-    The code is cross-platform (tested on Linux (Raspbian) and Windows). It should be able to run on any platform, however, the 
+    The code is cross-platform (tested on Raspbian and Windows). It should be able to run on any platform, however, the 
 intended platform is a Raspberry Pi or similiar SBC.
