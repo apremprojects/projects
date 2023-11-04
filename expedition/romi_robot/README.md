@@ -1,3 +1,7 @@
+![](robot_side_1.jpg)  
+![](robot_side_3.jpg)  
+![](robot_top.jpg)
+(Above, my particular robot)  
 **What is the Romi Robot?**  
     The Polulu Romi Robot, which I will refer to as the Romi Robot, is a simple, 2-wheeled robot. It can be powered from a set of 4-6
 AA batteries (which is the recommended manufacturer method), however, there is support to modify the robot to accept a 2S (7.4 volt) rechargable LiPo(Lithium-Polymer) battery (the kind used in hobbyist RC cars and drones). I chose to modify the robot to accept this new LiPo battery as the AA batteries were cumbersome to install and needed frequent charging. I ended up having to install a 3D-printed battery mount, which I made using my Creality K1 3D printer. This mount dramatically increased the ease of use of the robot, as it kept the battery securely attached AND was easily removable with a standard screwdriver.  
@@ -26,8 +30,8 @@ Pi->Microcontroller -> The Pi sends velocity setpoints and duration whenever it 
 Microcontroller->Pi -> The microcontroller tells the Pi about the motor "throttle" strength, the ACTUAL motor velocity (it is never perfect, there is a little bit of fluctuation), it's busy status (is it too busy with commands to accept a new one), and more information.
 
 **What does the Microcontroller do?**  
-    The Microcontroller runs a firmware developed using the Arduino IDE and Arduino language. It is based off C/C++, but has some 
-custom tweaks to make it run better on microcontrollers. Compared to regular C/C++, it is missing many features (like resizable vectors). The Arduino's task is to wait for commands, and upon recieving them, send its status (wheel velocity, wheel "throttle", time units (or ticks), business (can it accept more commands?), and more).  
+    The microcontroller runs a firmware developed using the Arduino IDE and Arduino language. It is based off C/C++, but has some 
+custom tweaks to make it run better on microcontrollers. Compared to regular C/C++, it is missing many features (like resizable vectors). The Arduino's task is to wait for commands, and upon recieving them, send its status (wheel velocity, wheel "throttle", time units (or ticks), busyness (can it accept more commands?), and more).  
 
 **Romi Robot projects**  
 Here is a comprehensive description of my Romi Robot projects.
