@@ -24,6 +24,7 @@ public:
   void disableVertexAttribArray(const char* name);
 
   void setUniform(const char* name, const float value);
+  void setUniform(const char* name, const int value);
   void setUniform(const char* name, const Eigen::Vector2f& v);
   void setUniform(const char* name, const Eigen::Vector3f& v);
   void setUniform(const char* name, const Eigen::Vector4f& v);

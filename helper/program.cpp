@@ -59,6 +59,11 @@ void Program::compile(const GLuint shader) {
   }
 }
 
+void Program::setUniform(const char* name, const int value) {
+    const GLuint loc = glGetUniformLocation(program, name);
+    glUniform1i(loc, value);
+}
+
 void Program::setUniform(const char* name, const float value) {
   const GLuint loc = glGetUniformLocation(program, name);
   glUniform1f(loc, value);

@@ -24,6 +24,7 @@ public:
 
   void load(const std::vector<T>& data);
   void append(const std::vector<T>& data);
+  void append(const T* data, const size_t count);
 
   void load(const size_t start, const size_t size, const T* data);
 
@@ -92,6 +93,14 @@ void Buffer<T, target>::append(const std::vector<T>& data) {
   glBufferSubData(target, size_ * sizeof(T), data.size() * sizeof(T), data.data());
   glBindBuffer(target, 0);
   size_ += data.size();
+}
+
+template <typename T, GLenum target>
+void Buffer<T, target>::append(const T* data, const size_t count) {
+    glBindBuffer(target, buffer_);
+    glBufferSubData(target, size_ * sizeof(T), count * sizeof(T), data);
+    glBindBuffer(target, 0);
+    size_ += count;
 }
 
 template <typename T, GLenum target>
