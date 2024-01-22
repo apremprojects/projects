@@ -1,0 +1,5 @@
+![](magnetometer_calibration-1.svg)  
+![](magnetometer_calibration-2.svg)  
+![](magnetometer_calibration-3.svg)  
+![](magnetometer_calibration-4.svg)  
+![](magnetometer_calibration-5.svg)  
