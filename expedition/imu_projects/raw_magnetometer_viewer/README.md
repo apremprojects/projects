@@ -15,7 +15,7 @@ Highly sophisticated IMUs use ring laser gyros, which use the properties of lase
 Consumer-grade IMUs used in small-scale drones, phones, etc. use solid-state principles and are extremely small. An example of this would be the Polulu MiniIMU which  I use. They are made out of extremely tiny silicon circuits and are made like other semiconductors. They measure acceleration, angular rate, and magnetic field along XYZ planes
 
 Also, all of the earlier IMUs can be integrated with other sensors, like temperature, pressure, and acceleration. As long as all the other sensors are on the same circuit board, it is considered an IMU.
-![](imu_image.png)  
+![](../assets/imu_image.png)  
 
 (left to right, gyroscope, ring laser gyroscope, and MEMS gyroscope)
 
@@ -43,7 +43,7 @@ I chose this project because I was interested in how robots, drones, and planes 
 
 6.  3D printed enclosure to store it in
 
-![](box.jpg)  
+![](../assets/box.jpg)  
 The hardware in my project is an IMU (listed above) and an Arduino Micro (also listed above). The Arduino is connected to the IMU, and the two communicate over I2C. The computer communicates with the Arduino over a USB serial link. To initiate communication, the ASCII character 's' is sent over serial as a "heartbeat" character, and for the next 250ms, the Arduino sends data. To get a continuous stream of data, the ASCII "heartbeat" character is sent every 250ms. The details sent by the Arduino include accelerometer data, gyroscope data, magnetometer data, and a timestamp.![](https://lh7-us.googleusercontent.com/n5Ul4_AJLVCjdGgMKKfDdl2YFodPbUDfVCC98f9jWMttZue17wNMl2Ui2iMrGWustvb1zznv4zr1l1JVoQ-uJAyhwzPbng2F0LXM5apLfGBGGEbUzKzvhTCxYfs1yMYRQpqGv1KM-o_ybfHCUjJRD4c)
 
 **Software**
