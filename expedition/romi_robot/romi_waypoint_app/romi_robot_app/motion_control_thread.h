@@ -42,7 +42,7 @@ public:
 	}
 
 	void setGains(const Gain& gains_v, const Gain& gains_d, const Gain& gains_y) {
-		qDebug() << "SetGains()";
+		//qDebug() << "SetGains()";
 		const int num_chars =
 			sprintf(tx_buffer.data(),
 				"k %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld, %d\r\n",
@@ -63,6 +63,7 @@ public:
 	}
 
 	void setWayPoint(const int x, const int y) {
+		//qDebug() << "SW";
 		const int num_chars = sprintf(tx_buffer.data(), "w %d, %d\r\n", x, y);
 		if (num_chars < 0) {
 			qDebug() << "SetWayPoint Failed";
@@ -74,10 +75,13 @@ public:
 		const int bytes_read = serial_port.read(rx_buffer.data(), rx_buffer.capacity());
 		rx_buffer[bytes_read] = '\0';
 		qDebug() << bytes_read << " - " << rx_buffer.data();
+		if(bytes_read == 0){
+			exit(1);
+		}
 	}
 
 	State getCurrentState() {
-		qDebug() << "getCurrentState()";
+		//qDebug() << "getCurrentState()";
 		State state;
 		const int num_chars = sprintf(tx_buffer.data(), "s\r\n");
 		if (num_chars < 0) {
@@ -85,12 +89,12 @@ public:
 			exit(0);
 		}
 		serial_port.write(tx_buffer.data(), 3);
-		qDebug() << "HERE1\n";
-		//serial_port.waitForBytesWritten();
+		//qDebug() << "HERE1\n";
+		serial_port.waitForBytesWritten();
 		serial_port.waitForReadyRead(2000);
-		qDebug() << "HERE2\n";
+		//qDebug() << "HERE2\n";
 		const int bytes_read = serial_port.read(rx_buffer.data(), rx_buffer.capacity());
-		qDebug() << bytes_read;
+		//qDebug() << bytes_read;
 		rx_buffer[bytes_read] = '\0';
 		unsigned long int timestamp;
 		int is_idle, is_wps_q_full;
@@ -110,7 +114,7 @@ public:
 			qDebug() << "reset failed";
 			exit(0);
 		}
-		qDebug() << "reset";
+		//qDebug() << "reset";
 		serial_port.write(tx_buffer.data());
 		serial_port.waitForBytesWritten();
 	}

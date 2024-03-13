@@ -26,7 +26,7 @@ MotionControlThread::~MotionControlThread() {
 }
 
 void MotionControlThread::run() {
-	qDebug() << "run()";
+	//qDebug() << "run()";
 	//RomiRobot romi("COM8");
 
 	const RomiRobot::Gain gains_v = { 600, 110000, -1 };
@@ -53,12 +53,13 @@ void MotionControlThread::run() {
 					dest = way_points.front();
 					way_points.pop_front();
 					romi.setWayPoint(dest.x(), dest.y());
-					qDebug() << "---- Here: " << dest.x() << ", " << dest.y();
+					//qDebug() << "---- Here: " << dest.x() << ", " << dest.y();
 				}
 			}
 			if (!reset_commands.isEmpty()) {
 				Eigen::Vector3i origin = reset_commands.front();
 				reset_commands.pop_front();
+				way_points.clear();
 				romi.reset(origin.x(), origin.y(), origin.z());
 			}
 		}
@@ -79,7 +80,7 @@ void MotionControlThread::stop() {
 }
 
 void MotionControlThread::addWayPoints(const int x, const int y) {
-	qDebug() << "addWayPoints() -> " << x << ", " << y;
+	//qDebug() << "addWayPoints() -> " << x << ", " << y;
 	{
 		QMutexLocker lock(&cond_mutex);
 		way_points.push_back({ x, y });
@@ -97,7 +98,7 @@ void MotionControlThread::reset(const int x, const int y, const int theta) {
 }
 
 Eigen::Vector3d MotionControlThread::state() {
-	qDebug() << "state()";
+	//qDebug() << "state()";
 	Eigen::Vector3d head;
 	{
 		QMutexLocker lock(&mutex);
