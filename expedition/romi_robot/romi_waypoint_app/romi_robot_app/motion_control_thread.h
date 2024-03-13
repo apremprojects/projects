@@ -38,7 +38,7 @@ public:
 			qDebug() << "Failed to open serial port: " << serial_port.portName() << "\n";
 			exit(0);
 		}
-		serial_port.setDataTerminalReady(true);
+		//serial_port.setDataTerminalReady(true);
 	}
 
 	void setGains(const Gain& gains_v, const Gain& gains_d, const Gain& gains_y) {

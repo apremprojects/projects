@@ -19,7 +19,7 @@ MotionControlThread::MotionControlThread(QObject* parent, QMutex& mutex, QQueue<
 	pos(0.0, 0.0),
 	mutex(mutex),
 	queue(queue),
-	romi("COM5") {}
+	romi("/dev/ttyACM0") {}
 
 MotionControlThread::~MotionControlThread() {
 	stop();
