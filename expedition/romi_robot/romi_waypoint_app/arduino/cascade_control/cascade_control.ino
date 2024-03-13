@@ -21,6 +21,9 @@ int tick_count;
 int duration_in_ticks;
 int tick_count_last_hb;
 int halt_count_ticks;
+long int kp_v, ki_v, kd_v;
+long int kp_dist, ki_dist, kd_dist;
+long int kp_yaw, ki_yaw, kd_yaw;
 bool is_idle;
 bool is_oriented;
 
@@ -98,9 +101,6 @@ void readLine(char* line) {
 }
 
 void setGains() {
-  long int kp_v, ki_v, kd_v;
-  long int kp_dist, ki_dist, kd_dist;
-  long int kp_yaw, ki_yaw, kd_yaw;
   readLine(line);
   sscanf(line, " %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld, %d", &kp_v, 
             &ki_v, &kd_v, 
@@ -142,7 +142,13 @@ void wayPoint() {
 
 void reset() {
   readLine(line);
-  sscanf(line, " %lf, %lf, %lf", &origin.x, &origin.y, &yaw);
+  long int tx = 0, ty = 0, tt = 0;
+  sscanf(line, " %ld, %ld, %ld\r\n", &tx, &ty, &tt);
+
+  origin.x = static_cast<double>(tx) / 1000.0;
+  origin.y = static_cast<double>(ty) / 1000.0;
+  yaw = static_cast<double>(tt) / 180.0 * M_PI;
+
   wps_q.clear();
 
   dest = origin;
@@ -214,7 +220,7 @@ void loop() {
 
   float dt = ((float)diff_ms)/1000.0f;
   const double dist = distance(dest, origin);
-  if (abs(dist) < 0.02) {//50 ticks in meters?
+  if (abs(dist) < 0.003) {//50 ticks in meters?
     if (wps_q.isEmpty()) {
       is_idle = true;
       Romi32U4Motors::setSpeeds(0, 0);
@@ -253,9 +259,18 @@ void loop() {
   //sprintf(line, "%lf, %lf, %lf, %lf, %lf, %lf, %lf, %d, %d\r\n", origin.x, origin.y, dest.x, dest.y, yaw, heading_error, dist_error, tv_dist, tv_angle);
   //Serial.print(line);
 
-  if(abs(heading_error) < degToRad(10)){ //if heading error < 10 deg, clamp to small values
+
+  if(!is_oriented){ //if it isn't oriented
+    //correct till < 5 deg, then set is_oriented to true
+    tv_l = tv_angle;
+    tv_r = - tv_angle;
+    if(abs(heading_error) < degToRad(5)){
+      is_oriented = true;
+    }
+  }
+  else if(abs(heading_error) < degToRad(10)){ //if heading error < 10 deg, clamp to small values
     if(dist > 0.03) {//going forwards and turning
-      tv_angle = clamp(tv_angle, -2, 2);
+      tv_angle = static_cast<int16_t>(heading_pid.process(heading_error, dt, -10.0f, 10.0f) * 0.1);
       tv_l = tv_dist + tv_angle;
       tv_r = tv_dist - tv_angle;
       //Serial.print("here1\r\n");
@@ -266,10 +281,8 @@ void loop() {
       //Serial.print("here2\r\n");
     }
   }
-  else{ //if angle heading error > 10 deg, stop and adjust
-    tv_l = tv_angle;
-    tv_r = -tv_angle;
-    //Serial.print("here3\r\n");
+  else { //if angle heading error > 5 deg, stop and adjust to < 2 deg
+    is_oriented = false;
   }
   //only rot, only set tv_l = tv_angle, etc.
 

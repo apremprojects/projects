@@ -27,6 +27,7 @@ public:
   void append(const T* data, const size_t count);
 
   void load(const size_t start, const size_t size, const T* data);
+  void clear();
 
   GLuint operator()() const { return buffer_; }
 
@@ -108,6 +109,11 @@ void Buffer<T, target>::load(const size_t start, const size_t size, const T* dat
   glBindBuffer(target, buffer_);
   glBufferSubData(target, start * sizeof(T), size * sizeof(T), data);
   glBindBuffer(target, 0);
+}
+
+template <typename T, GLenum target>
+void Buffer<T, target>::clear() {
+    size_ = 0;
 }
 
 }
