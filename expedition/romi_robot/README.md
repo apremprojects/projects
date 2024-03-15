@@ -46,21 +46,22 @@ commands, and report important details (eg. left/right wheel velocity). Also, as
 6. Cross-platform build system with CMake (Works on Windows and Linux)
 
 **Romi Robot projects**  
-Here is a comprehensive description of my Romi Robot projects.
+Here is a comprehensive description of my Romi Robot projects.  
+  
+1. **PID tuner** (romi_robot/pid_tuner)  
+    1. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
 ![](pid_tuner.png)  
-1. **PID tuner** (romi_robot/pid_tuner)
-    a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
+3. **Motion Commands** (romi_robot/velocity_pid_test)  
+    1. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
-2. **Motion Commands** (romi_robot/velocity_pid_test)
-    a. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
+4. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)  
+    1. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.  
+        1. Uses a standard Bluetooth controller, in my case, an XBox controller.
 [![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
-3. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)
-    a. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.
-        a. Uses a standard Bluetooth controller, in my case, an XBox controller.
 
 **What is graph_image?**  
-    Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its' axes and numbers
-(used to display 2D graphs). This simplifies things for me as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.
+    Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its axes and numbers
+(used to display 2D graphs). This simplifies things as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.
 
 **Is it cross-platform?**  
     The code is cross-platform (tested on Raspbian and Windows). It should be able to run on any platform, however, the 
