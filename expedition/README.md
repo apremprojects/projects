@@ -11,24 +11,24 @@
             1. A combination of the Raw Accelerometer Data Viewer, Raw Magnetometer Data Viewer, and a new Raw Gyro Data viewer.  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)  
 3. **PID tuner** (romi_robot/pid_tuner)  
-    a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
+    1. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
 4. **Motion Commands** (romi_robot/velocity_pid_test)  
-    a. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
+    1. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
 5. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)  
-    a. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.  
+    1. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.  
         a. Uses a standard Bluetooth controller, in my case, an Xbox controller.  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
   
 **Round 2**  
 1. **Magnetometer Calibration** (imu_projects/magnetometer_calibration)  
-    a. Uses Eigen and magnetometer data to generate calibration data to process raw magnetometer data.
+    1. Uses Eigen and magnetometer data to generate calibration data to process raw magnetometer data.
 [![](https://markdown-videos-api.jorgenkh.no/youtube/NJRtEHCLCtw)](https://youtu.be/NJRtEHCLCtw)  
 3. **Magnetometer Calibration Viewer** (imu_projects/view_magnetometer_calibration)  
-    a. Uses Eigen, earlier calibration data, and magnetometer data to display calibrated magnetometer data, useful to calculate heading.
+    1. Uses Eigen, earlier calibration data, and magnetometer data to display calibrated magnetometer data, useful to calculate heading.
 [![](https://markdown-videos-api.jorgenkh.no/youtube/q61ZD1pd00A)](https://youtu.be/q61ZD1pd00A)  
   
 **Round 3**
 1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
-    a. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and
+    1. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and
        communicate trajectory and current position to a PC using TCP.  
