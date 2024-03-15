@@ -22,7 +22,7 @@
     a. Uses Eigen and magnetometer data to generate calibration data to process raw magnetometer data.  
 2. **Magnetometer Calibration Viewer** (imu_projects/view_magnetometer_calibration)  
     a. Uses Eigen, earlier calibration data, and magnetometer data to display calibrated magnetometer data, useful to calculate heading.
-**Round 3**
-1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)
+**Round 3**  
+1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
     a. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and
-       communicate trajectory and current position to a PC using TCP.
+       communicate trajectory and current position to a PC using TCP.  
