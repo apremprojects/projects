@@ -1,15 +1,15 @@
 **Round 1**  
 ![](imu_projects/imu_image.png)  
 1. **IMU Data visualizer** (imu_projects/raw_imu_viewer)
-    a. Uses OpenGL and Qt to display 2D graphs of accelerometer and gyro data and 3D point data of magnetometer data.  
-    b. Many subprojects were used for practice. The final project is a combination of them.  
-        a. **Raw Accelerometer Data** (imu_projects/raw_accel_viewer)  
-            a. Uses Qt and OpenGL to display a graph of accelerometer data in the X, Y, and Z axes.  
-        b. **Raw Magnetometer Viewer** (imu_projects/raw_magnetometer_data)  
-            a. Uses Qt and OpenGL to display a 3D graph of magnetometer data in the X, Y, and Z axes.  
-        c. **Raw IMU Data Viewer** (imu_projects/raw_imu_data_viewer)  
-            a. A combination of the Raw Accelerometer Data Viewer, Raw Magnetometer Data Viewer, and a new Raw Gyro Data viewer.  
-       [![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)  
+    1. Uses OpenGL and Qt to display 2D graphs of accelerometer and gyro data and 3D point data of magnetometer data.  
+    2. Many subprojects were used for practice. The final project is a combination of them.  
+        1. **Raw Accelerometer Data** (imu_projects/raw_accel_viewer)  
+            1. Uses Qt and OpenGL to display a graph of accelerometer data in the X, Y, and Z axes.  
+        1. **Raw Magnetometer Viewer** (imu_projects/raw_magnetometer_data)  
+            1. Uses Qt and OpenGL to display a 3D graph of magnetometer data in the X, Y, and Z axes.  
+        1. **Raw IMU Data Viewer** (imu_projects/raw_imu_data_viewer)  
+            1. A combination of the Raw Accelerometer Data Viewer, Raw Magnetometer Data Viewer, and a new Raw Gyro Data viewer.  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)  
 3. **PID tuner** (romi_robot/pid_tuner)  
     a. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
 4. **Motion Commands** (romi_robot/velocity_pid_test)  
