@@ -56,13 +56,11 @@ Here is a comprehensive description of my Romi Robot projects.
 [![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
 4. **Romi Robot Controller Demo** (romi_robot/romi_robot_with_controller)  
     1. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.  
-        1. Uses a standard Bluetooth controller, in my case, an XBox controller.
+        1. Uses a standard Bluetooth controller, in my case, an XBox controller.  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
 
 **What is graph_image?**  
-    Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its axes and numbers
-(used to display 2D graphs). This simplifies things as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.
-
+    Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its axes and numbers (used to display 2D graphs). This simplifies things as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.  
+  
 **Is it cross-platform?**  
-    The code is cross-platform (tested on Raspbian and Windows). It should be able to run on any platform, however, the 
-intended platform is a Raspberry Pi or similiar SBC.
+    The code is cross-platform (tested on Raspbian and Windows). It should be able to run on any platform, however, the intended platform is a Raspberry Pi or similiar SBC.  
