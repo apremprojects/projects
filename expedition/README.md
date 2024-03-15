@@ -1,12 +1,12 @@
 **Round 1**  
 ![](imu_projects/imu_image.png)  
 1. **IMU Data visualizer** (imu_projects/raw_imu_viewer)  
-    a. Uses OpenGL and Qt to display 2D graphs of accelerometer and gyro data and 3D point data of magnetometer data.  
+    a. Uses OpenGL and Qt to display 2D graphs of accelerometer and gyro data and 3D point data of magnetometer data.
     b. Many subprojects were used for practice. The final project is a combination of them.  
-        a. **Raw Accelerometer Data** (imu_projects/raw_accel_viewer)  
-            a. Uses Qt and OpenGL to display a graph of accelerometer data in the X, Y, and Z axes.  
-        b. **Raw Magnetometer Viewer** (imu_projects/raw_magnetometer_data)  
-            a. Uses Qt and OpenGL to display a 3D graph of magnetometer data in the X, Y, and Z axes.  
+       a. **Raw Accelerometer Data** (imu_projects/raw_accel_viewer)  
+           a. Uses Qt and OpenGL to display a graph of accelerometer data in the X, Y, and Z axes.  
+       b. **Raw Magnetometer Viewer** (imu_projects/raw_magnetometer_data)  
+           a. Uses Qt and OpenGL to display a 3D graph of magnetometer data in the X, Y, and Z axes.  
        c. **Raw IMU Data Viewer** (imu_projects/raw_imu_data_viewer)  
            a. A combination of the Raw Accelerometer Data Viewer, Raw Magnetometer Data Viewer, and a new Raw Gyro Data viewer.  
        [![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)  
