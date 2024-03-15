@@ -16,7 +16,7 @@ For this project, no hardware changes to the robot itself were done, but the rob
   * Cascaded PID controllers
   * TCP Communication
   * Qt GUI design
-  * Complex bidirectional serial/TCP communication
+  * Complex bidirectional serial/TCP communication  
 **Things I applied**
   * Cross-platform build system with CMake (Works on Windows and Linux)
   * PID tuning
