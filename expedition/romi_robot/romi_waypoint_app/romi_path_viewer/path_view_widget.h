@@ -8,9 +8,9 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 
-#include "/home/arjun/source/projects/helper/buffer.h"
-#include "/home/arjun/source/projects/helper/texture.h"
-#include "/home/arjun/source/projects/helper/program.h"
+#include "../../../../helper/buffer.h"
+#include "../../../../helper/texture.h"
+#include "../../../../helper/program.h"
 
 class PathViewWidget : public QOpenGLWidget, private QOpenGLFunctions {
   Q_OBJECT
