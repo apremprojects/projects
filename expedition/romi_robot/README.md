@@ -58,7 +58,10 @@ Here is a comprehensive description of my Romi Robot projects.
     1. Control the two-wheeled robot with conventional joystick mechanics - like a video game or toy car - over Bluetooth.  
         1. Uses a standard Bluetooth controller, in my case, an XBox controller.  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/thmzI69DqIw)](https://youtu.be/thmzI69DqIw)  
-
+5. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
+    1. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and communicate trajectory and current position to a PC using TCP.  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/VHrM9P7A7Nk)](https://youtu.be/VHrM9P7A7Nk)  
+  
 **What is graph_image?**  
     Graph_image is a simple library I have included to help me with my code. Graph_image generates a 2D graph and its axes and numbers (used to display 2D graphs). This simplifies things as I do not have to reimplement the code from scratch each time I want to draw a 2D graph.  
   
