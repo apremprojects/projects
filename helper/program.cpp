@@ -78,9 +78,15 @@ void Program::setUniform(const char* name, const Eigen::Vector3f& v) {
   const GLint loc = glGetUniformLocation(program, name);
   glUniform3f(loc, v.x(), v.y(), v.z());
 }
+
 void Program::setUniform(const char* name, const Eigen::Vector4f& v) {
     const GLint loc = glGetUniformLocation(program, name);
     glUniform4f(loc, v.x(), v.y(), v.z(), v.w());
+}
+
+void Program::setUniform(const char* name, const float& x, const float& y, const float& z, const float& w) {
+    const GLint loc = glGetUniformLocation(program, name);
+    glUniform4f(loc, x, y, z, w);
 }
 
 void Program::setUniform(const char* name, const Eigen::Quaternionf& q, const bool transpose) {

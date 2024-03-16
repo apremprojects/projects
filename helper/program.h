@@ -28,6 +28,7 @@ public:
   void setUniform(const char* name, const Eigen::Vector2f& v);
   void setUniform(const char* name, const Eigen::Vector3f& v);
   void setUniform(const char* name, const Eigen::Vector4f& v);
+  void setUniform(const char* name, const float& x, const float& y, const float &z, const float &w);
   void setUniform(const char* name, const Eigen::Quaternionf& q, const bool transose = false);
   void setUniform(const char* name, const Eigen::Matrix3f& matrix, const bool transpose = false);
   void setUniform(const char* name, const Eigen::Matrix4f& matrix, const bool transpose = false);
