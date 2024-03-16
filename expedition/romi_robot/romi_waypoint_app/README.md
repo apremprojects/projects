@@ -1,3 +1,4 @@
+[![](https://markdown-videos-api.jorgenkh.no/youtube/VHrM9P7A7Nk)](https://youtu.be/VHrM9P7A7Nk)  
 **Introduction**  
 My project for this expedition is a waypoint system for the Polulu Romi Robot, which I discussed in my earlier README.md (link). I chose this project because I am interested in creating a robot that localizes using odometry, navigates to waypoints (a waypoint is a coordinate on the ground), and communicates its trajectory and current position with a PC using TCP. By choosing this project, I learned more about robot control and communication systems and GUI design.  
 **Technical details**  
