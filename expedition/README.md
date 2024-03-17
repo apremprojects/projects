@@ -32,3 +32,4 @@
 1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
     1. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and
        communicate trajectory and current position to a PC using TCP.  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/VHrM9P7A7Nk)](https://youtu.be/VHrM9P7A7Nk)  
