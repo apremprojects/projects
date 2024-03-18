@@ -41,18 +41,18 @@ namespace ObjReader {
 		std::vector<unsigned> res;
 		res.reserve(6);
 
-		std::cout << str << "\n";
+		//std::cout << str << "\n";
 		for (int i = 0; i < strlen(str); i++) {
 			if (abs(str[i] - '0') < 10) { //if ith char a number
 				if (start == -1) {
 					start = i;
-					std::cout << "START -> " << start << "\n";
+					//std::cout << "START -> " << start << "\n";
 				}
 			}
 			else {
 				if (start != -1) {//if start was set earlier
 					end = i - 1;
-					std::cout << "END -> " << end << "\n";
+					//std::cout << "END -> " << end << "\n";
 
 					//push start to end to res
 					char* substr = sub_str(str, start, end - start + 1);
@@ -66,7 +66,7 @@ namespace ObjReader {
 		}
 		if (start != -1) {
 			end = strlen(str) - 1;
-			std::cout << "END -> " << end << "\n";
+			//std::cout << "END -> " << end << "\n";
 
 			//push start to end to res
 			char* substr = sub_str(str, start, end - start + 1);
@@ -176,9 +176,6 @@ namespace ObjReader {
 			else if (line[0] == 'f' && line[1] == ' ') {
 				// Parse face data
 				std::vector<unsigned> faces = parseFaces(line.c_str());
-				if(faces.size() > 3) {
-					std::cout << faces.size() << "\n";
-				}
 				for (int i = 0; i < faces.size() - 2; i++) { //3 faces, 1 loop
 					const auto A = vertex[faces[0] - 1];
 					const auto B = vertex[faces[i + 1] - 1];
@@ -218,7 +215,7 @@ namespace ObjReader {
 				//std::cout << "HERE -> " << obj_data->groups.back().name << "\n";
 			}
 			else {
-				std::cout << line << "\n";
+				//std::cout << line << "\n";
 			}
 		}
 		return obj_data;
