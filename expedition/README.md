@@ -12,6 +12,7 @@
 [![](https://markdown-videos-api.jorgenkh.no/youtube/JowkhfD-yT4)](https://youtu.be/JowkhfD-yT4)  
 3. **PID tuner** (romi_robot/pid_tuner)  
     1. Uses OpenGL and Qt to help the user tune my robot's PIDs, and calculate the ideal values for optimal performance.  
+[![](https://markdown-videos-api.jorgenkh.no/youtube/wvVs3TY9yZE)](https://youtu.be/wvVs3TY9yZE)  
 4. **Motion Commands** (romi_robot/velocity_pid_test)  
     1. Uses a command line interface to make the robot perform a sequence of actions (eg. set the left wheel to speed X and right wheel to Y for Z seconds, etc.)  
 [![](https://markdown-videos-api.jorgenkh.no/youtube/hZ06y4L7jlU)](https://youtu.be/hZ06y4L7jlU)  
