@@ -133,7 +133,8 @@ void WidgetGL::mousePressEvent(QMouseEvent* event) {
 	m_flag = true;
 	old_v.x() = static_cast<float>(event->x()) / static_cast<float>(width() / 2.0f) - 1.0f;
 	old_v.y() = 1.0f - static_cast<float>(event->y()) / static_cast<float>(height() / 2.0f);
-	old_v.z() = -static_cast<float>(sqrt(abs(2 - (old_v.x() * old_v.x()) - (old_v.y() * old_v.y()))));
+	float z_sqr = 1 - (old_v.x() * old_v.x()) - (old_v.y() * old_v.y());
+	old_v.z() = (z_sqr > 0) ? sqrt(z_sqr) : 0;
 }
 
 void WidgetGL::mouseReleaseEvent(QMouseEvent* event) {
@@ -147,7 +148,8 @@ void WidgetGL::mouseMoveEvent(QMouseEvent* event) {
 	}
 	new_v.x() = static_cast<float>(event->x()) / static_cast<float>(width() / 2.0f) - 1.0f;
 	new_v.y() = 1.0f - static_cast<float>(event->y()) / static_cast<float>(height() / 2.0f);
-	new_v.z() = -static_cast<float>(sqrt(abs(2 - (new_v.x() * new_v.x()) - (new_v.y() * new_v.y()))));
+	float z_sqr = 1 - (new_v.x() * new_v.x()) - (new_v.y() * new_v.y());
+	new_v.z() = (z_sqr > 0) ? sqrt(z_sqr) : 0;
 	//qDebug() << "New_v -> " << new_v.x() << ", " << new_v.y() << ", " << new_v.z();
 	Vector3f axis = old_v.cross(new_v).normalized();
 	//qDebug() << "axis -> " << axis.x() << ", " << axis.y() << ", " << axis.z();
