@@ -4,7 +4,8 @@ A Quaternion is a way to represent rotations. It is an extension of complex numb
 **How do quaternions represent rotations?**  
 Understanding these earlier rules, it might seem difficult to understand how a quaternion can represent a rotation, being 4-dimensional (having **a**, **b**, **c**, and **d**), but quaternions are used to prevent a major flaw with Euler angles. Euler angles are a system that stores angles as Pitch, Roll, and Yaw. A major flaw with this system is that is susceptible to a problem called gimbal lock. (Figure 3). When the axes of a gimbal become parallel, the gimbal gets stuck, only being able to represent rotations in two axes from then on. Quaternions, by adding a 4th dimension, are no longer susceptible to this. Assuming a normalized axis of rotation **x**, **y**, **z**, and an angle **θ**, a quaternion can represent a rotation **q** = **cos(θ/2) + sin(θ/2)xi + sin(θ/2)yj +  + sin(θ/2)zk**. To rotate a point **x**, **y**, **z** around the quaternion **q**, **0 + xₙₑwi + yₙₑwj + zₙₑwk = q × (0 + xi + yj + zk) × q⁻¹**.
 
-![image](https://github.com/apremprojects/projects/assets/98241613/b75a62d8-5431-421e-9b25-fc4a4f4eded1)![image](https://github.com/apremprojects/projects/assets/98241613/04ca59d6-9a40-4772-9e74-913c6ac86703)![image](https://github.com/apremprojects/projects/assets/98241613/d136cc06-343b-4a92-8630-aebee9f17935)
+![image](https://github.com/apremprojects/projects/assets/98241613/b75a62d8-5431-421e-9b25-fc4a4f4eded1)![image](https://github.com/apremprojects/projects/assets/98241613/04ca59d6-9a40-4772-9e74-913c6ac86703)![image](https://github.com/apremprojects/projects/assets/98241613/d136cc06-343b-4a92-8630-aebee9f17935)  
+(Fig. 1, 2, 3)
 
 **Project Descriptions**  
 * *obj_file* - This is a library to parse .obj files. It also parses .mtl files, so that .obj files appear in the correct color.  
