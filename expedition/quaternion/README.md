@@ -12,12 +12,14 @@ Understanding these earlier rules, it might seem difficult to understand how a q
 
 **Project Descriptions**  
 * obj_file - This is a library to parse .obj files. It also parses .mtl files, so that .obj files appear in the correct color.  
-  *It stores the .obj file’s vertices and normals in OpenGL buffers for easy future use.  
-*quaternion_demo - This is a library with a Quaternion class that implements various quaternion operations with some test programs to verify the class works correctly.
-*viewer_with_euler - This is a .obj viewer using Euler angles as a baseline. It has 3 spinboxes, each storing the x, y, and z (roll, pitch, and yaw). It is not possible to use the mouse to drag the camera around. Diffuse lighting is implemented.
-  *It uses obj_file to parse the provided .obj file.
-https://youtu.be/APsEHQz6kWw
-*viewer_with_quaternion - This is a .obj viewer using Quaternions, built off viewer_with_euler. It is possible to use the mouse to drag the camera around. Diffuse lighting is implemented.
-  *It uses obj_file to parse the provided .obj file.
+    * It stores the .obj file’s vertices and normals in OpenGL buffers for easy future use.  
+* quaternion_demo - This is a library with a Quaternion class that implements various quaternion operations with some test programs to verify the class works correctly.
+* viewer_with_euler - This is a .obj viewer using Euler angles as a baseline. It has 3 spinboxes, each storing the x, y, and z (roll, pitch, and yaw). It is not possible to use the mouse to drag the camera around. Diffuse lighting is implemented.
+    * It uses obj_file to parse the provided .obj file.
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/APsEHQz6kWw)](https://youtu.be/APsEHQz6kWw)  
+* viewer_with_quaternion - This is a .obj viewer using Quaternions, built off viewer_with_euler. It is possible to use the mouse to drag the camera around. Diffuse lighting is implemented.
+    * It uses obj_file to parse the provided .obj file.
 *  Eigen’s Quaternion class is used instead of quaternion_demo’s quaternion library as it is more advanced and has more features.
-https://www.youtube.com/watch?v=RonZaKVwmh0
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/RonZaKVwmh0)](https://youtu.be/RonZaKVwmh0)  
