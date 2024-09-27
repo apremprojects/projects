@@ -1,6 +1,5 @@
 **Round 4**
-1. Quaternion EKF
-    Quaternion EKF implemented with C++ and Eigen.  
+1. Quaternion EKF - Extended Kalman filter implementation with C++, Eigen.  
         [![](https://markdown-videos-api.jorgenkh.no/youtube/wSQzP2i2kI4)](https://youtu.be/wSQzP2i2kI4)
 
 **Round 3**
