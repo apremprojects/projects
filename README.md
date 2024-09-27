@@ -1,7 +1,7 @@
 **Round 4**
 1. Quaternion EKF
-
-[![](https://markdown-videos-api.jorgenkh.no/youtube/wSQzP2i2kI4)](https://youtu.be/wSQzP2i2kI4)
+    Quaternion EKF implemented with C++ and Eigen.  
+        [![](https://markdown-videos-api.jorgenkh.no/youtube/wSQzP2i2kI4)](https://youtu.be/wSQzP2i2kI4)
 
 **Round 3**
 1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
