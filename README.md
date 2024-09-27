@@ -1,6 +1,8 @@
 **Round 4**
 1. Quaternion EKF
 
+[![](https://markdown-videos-api.jorgenkh.no/youtube/wSQzP2i2kI4)](https://youtu.be/wSQzP2i2kI4)
+
 **Round 3**
 1. **Romi Robot Waypoint App**  (romi_robot/romi_waypoint_app)  
     1. Waypoint system for the Polulu Romi Robot involving 3 separate programs (client-side, server-side, and Arduino) that allow the robot to localize itself, navigate to waypoints, and communicate trajectory and current position to a PC using TCP.  
